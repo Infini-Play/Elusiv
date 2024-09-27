@@ -1,0 +1,44 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+
+      {
+        "name": "Run Local with Supabase",
+        "type": "dart",
+        "request": "launch",
+        "program": "lib/main.dart",
+        "preLaunchTask": "Serve Supabase Functions",
+        "postDebugTask": "Stop Supabase",
+        "env": {
+          "FLAVOR": "local"
+        },
+        "cwd": "${workspaceFolder}"
+      },
+
+
+      {
+        "name": "Run Staging",
+        "type": "dart",
+        "request": "launch",
+        "program": "lib/main.dart",
+        "env": {
+          "FLAVOR": "staging"
+        }
+      },
+
+
+      {
+        "name": "Run Production",
+        "type": "dart",
+        "request": "launch",
+        "program": "lib/main.dart",
+        "env": {
+          "FLAVOR": "prod"
+        }
+      }
+
+      
+    ],
+    "compounds": []
+  }
+  
