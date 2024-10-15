@@ -1,0 +1,47 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+
+      {
+        "name": "Run Local with pocketbase",
+        "type": "dart",
+        "flutterMode": "profile",
+        "request": "launch",
+        "program": "lib/main.dart",
+        "preLaunchTask": "Start pocketbase",
+        "postDebugTask": "Stop pocketbase",
+        "env": {
+          "FLAVOR": "local"
+        },
+        "cwd": "${workspaceFolder}"
+      },
+
+
+      {
+        "name": "Run Staging",
+        "type": "dart",
+        "flutterMode": "profile",
+        "request": "launch",
+        "program": "lib/main.dart",
+        "env": {
+          "FLAVOR": "staging"
+        }
+      },
+
+
+      {
+        "name": "Run Production",
+        "type": "dart",
+        "flutterMode": "profile",
+        "request": "launch",
+        "program": "lib/main.dart",
+        "env": {
+          "FLAVOR": "prod"
+        }
+      }
+
+      
+    ],
+    "compounds": []
+  }
+  
