@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 const Color deepGray = Color.fromARGB(255, 62, 62, 62);
 const Color bloodRed = Color.fromARGB(255, 128, 21, 32);
 const Color deepMaroon = Color.fromARGB(255, 71, 8, 15);
+const Color lightMaroon = Color.fromARGB(255, 135, 36, 52);
 const Color mediumGray = Color.fromARGB(255, 102, 108, 108);
 const Color deepMagenta = Color.fromARGB(255, 104, 23, 95);
 const Color softBlack = Color.fromARGB(255, 27, 27, 27);

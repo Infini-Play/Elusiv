@@ -1,36 +1,40 @@
 
+import 'package:elusiv/core/common_widgets/themed_container_no_borders.dart';
 import 'package:elusiv/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
-class ThemedContainer extends StatelessWidget {
-  final Widget? child;
-  final double? width;
-  final double? height;
+/// A container consitent with the theme of the app.
+class ThemedContainer extends ThemedContainerNoBorders {
+
+
+  /// Determines the border width for all edges of the container.
+  /// 
+  /// This value is not used if [border] is not `null`.
   final double? borderWidth;
+
+  /// Determines the [border] of the container.
+  /// 
+  /// Overrides [borderWidth] if not `null`.
   final Border? border;
-  final double? borderRadiusValue;
-  final BorderRadius? borderRadius;
-  final EdgeInsetsGeometry? padding;
-  final EdgeInsetsGeometry? margin;
 
   const ThemedContainer({
     super.key,
-    this.child,
-    this.width,
-    this.height,
+    super.child,
+    super.width,
+    super.height,
+    super.padding,
+    super.margin,
+    super.borderRadiusValue,
+    super.borderRadius,
+    super.alternateColors,
     this.borderWidth,
-    this.borderRadiusValue,
-    this.borderRadius,
-    this.padding,
-    this.margin,
     this.border,
   });
 
   @override
   Widget build(BuildContext context) {
 
-    // Border logic
-    // borderWidth is ignored if a border is passed in
+    
     Border finalBorder;
     if (border != null) {finalBorder = border!;}
     else {
@@ -54,10 +58,11 @@ class ThemedContainer extends StatelessWidget {
       );
     }
     
+    final containerColor = alternateColors ? accent : primary;
 
     return Container(
       decoration: BoxDecoration(
-        color: primary,
+        color: containerColor,
         border: finalBorder,
         borderRadius: finalBorderRadius,
       ),
