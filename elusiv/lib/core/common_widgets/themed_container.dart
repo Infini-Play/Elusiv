@@ -27,6 +27,7 @@ class ThemedContainer extends ThemedContainerNoBorders {
     super.borderRadiusValue,
     super.borderRadius,
     super.alternateColors,
+    super.elevation,
     this.borderWidth,
     this.border,
   });
@@ -34,13 +35,16 @@ class ThemedContainer extends ThemedContainerNoBorders {
   @override
   Widget build(BuildContext context) {
 
+    final double shownElevation = elevation ?? 0.0;
+    final containerColor = alternateColors ? secondary : primary;
+    final borderColor = alternateColors ? onSecondary : onPrimary;
     
     Border finalBorder;
     if (border != null) {finalBorder = border!;}
     else {
       final borders = borderWidth != null 
-      ? BorderSide(color: onPrimary, width: borderWidth!)
-      : const BorderSide(color: onPrimary, width: 2);
+      ? BorderSide(color: borderColor, width: borderWidth!)
+      :  BorderSide(color: borderColor, width: 2);
       finalBorder = Border(top: borders, bottom: borders, left: borders, right: borders);
     }
 
@@ -57,20 +61,24 @@ class ThemedContainer extends ThemedContainerNoBorders {
         bottomRight: borderRadiusvalues,
       );
     }
-    
-    final containerColor = alternateColors ? accent : primary;
 
-    return Container(
-      decoration: BoxDecoration(
-        color: containerColor,
-        border: finalBorder,
-        borderRadius: finalBorderRadius,
+
+
+    return Material(
+      elevation: shownElevation,
+      borderRadius: finalBorderRadius,
+      child: Container(
+        decoration: BoxDecoration(
+          color: containerColor,
+          border: finalBorder,
+          borderRadius: finalBorderRadius,
+        ),
+        width: width,
+        height: height,
+        padding: padding,
+        margin: margin,
+        child: child,
       ),
-      width: width,
-      height: height,
-      padding: padding,
-      margin: margin,
-      child: child,
     );
   }
 }

@@ -10,6 +10,7 @@ class ThemedContainerNoBorders extends StatelessWidget {
   final double? height;
   final EdgeInsetsGeometry? padding;
   final EdgeInsetsGeometry? margin;
+  final double? elevation;
 
   /// Whether the alternate color scheme is used or not.
   /// 
@@ -34,6 +35,7 @@ class ThemedContainerNoBorders extends StatelessWidget {
     this.height,
     this.padding,
     this.margin,
+    this.elevation,
     this.borderRadiusValue,
     this.borderRadius,
     this.alternateColors = false,
@@ -41,6 +43,9 @@ class ThemedContainerNoBorders extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final double shownElevation = elevation ?? 0.0;
+    final containerColor = alternateColors ? secondary : primary;
 
     BorderRadius finalBorderRadius;
     if (borderRadius != null) {finalBorderRadius = borderRadius!;}
@@ -55,19 +60,21 @@ class ThemedContainerNoBorders extends StatelessWidget {
         bottomRight: borderRadiusvalues,
       );
     }
-    
-    final containerColor = alternateColors ? accent : primary;
 
-    return Container(
-      decoration: BoxDecoration(
-        color: containerColor,
-        borderRadius: finalBorderRadius,
+    return Material(
+      elevation: shownElevation,
+      borderRadius: finalBorderRadius,
+      child: Container(
+        decoration: BoxDecoration(
+          color: containerColor,
+          borderRadius: finalBorderRadius,
+        ),
+        width: width,
+        height: height,
+        padding: padding,
+        margin: margin,
+        child: child,
       ),
-      width: width,
-      height: height,
-      padding: padding,
-      margin: margin,
-      child: child,
     );
   }
 }
