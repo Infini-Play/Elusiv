@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   // Determine the environment and load the corresponding .env file
   const String env = String.fromEnvironment('FLAVOR', defaultValue: 'local');
   String apiURl;
