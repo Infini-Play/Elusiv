@@ -10,11 +10,11 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    void loginPage() {
+    void goLoginPage() {
       context.goNamed(AppRoute.loginPage.name);
     }
 
-    void registrationPage() {
+    void goRegistrationPage() {
       context.goNamed(AppRoute.registrationPage.name);
     }
 
@@ -25,7 +25,7 @@ class WelcomePage extends StatelessWidget {
           children: [
 
             LoginRegisterButton(
-              onTap: loginPage,
+              onTap: goLoginPage,
               message: 'Login'.hardcoded,
               elevation: 4,
             ),
@@ -33,7 +33,7 @@ class WelcomePage extends StatelessWidget {
             const SizedBox(height: 20),
 
             LoginRegisterButton(
-              onTap: registrationPage,
+              onTap: goRegistrationPage,
               message: 'Register'.hardcoded,
               elevation: 4,
               alternateColors: true,

@@ -1,5 +1,6 @@
 
-import 'package:elusiv/core/common_widgets/themed_container_no_borders.dart';
+import 'package:elusiv/core/common_widgets/borders/themed_border.dart';
+import 'package:elusiv/core/common_widgets/containers/themed_container_no_borders.dart';
 import 'package:elusiv/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
@@ -37,16 +38,9 @@ class ThemedContainer extends ThemedContainerNoBorders {
 
     final double shownElevation = elevation ?? 0.0;
     final containerColor = alternateColors ? secondary : primary;
-    final borderColor = alternateColors ? onSecondary : onPrimary;
-    
-    Border finalBorder;
-    if (border != null) {finalBorder = border!;}
-    else {
-      final borders = borderWidth != null 
-      ? BorderSide(color: borderColor, width: borderWidth!)
-      :  BorderSide(color: borderColor, width: 2);
-      finalBorder = Border(top: borders, bottom: borders, left: borders, right: borders);
-    }
+
+    final borderSide = ThemedBorderSide(width: borderWidth, alternateColors: alternateColors);
+    final finalBorder = ThemedBorder(borderSide: borderSide).getBorder();
 
     BorderRadius finalBorderRadius;
     if (borderRadius != null) {finalBorderRadius = borderRadius!;}

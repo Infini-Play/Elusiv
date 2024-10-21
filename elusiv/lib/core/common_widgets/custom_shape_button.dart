@@ -1,7 +1,7 @@
 import 'dart:math';
 
-import 'package:elusiv/core/common_widgets/themed_container.dart';
-import 'package:elusiv/core/common_widgets/themed_container_no_borders.dart';
+import 'package:elusiv/core/common_widgets/containers/themed_container.dart';
+import 'package:elusiv/core/common_widgets/containers/themed_container_no_borders.dart';
 import 'package:elusiv/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 

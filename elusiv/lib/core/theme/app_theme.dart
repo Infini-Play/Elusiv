@@ -8,6 +8,7 @@ const Color bloodRed = Color.fromARGB(255, 128, 21, 32);
 const Color deepMaroon = Color.fromARGB(255, 71, 8, 15);
 
 const Color offWhite = Color.fromARGB(255, 227, 227, 227);
+const Color offWhiteSemiClear = Color.fromARGB(152, 227, 227, 227);
 const Color lightGray = Color.fromARGB(255, 102, 108, 108);
 const Color deepGray = Color.fromARGB(255, 62, 62, 62);
 const Color darkGray = Color.fromARGB(255, 50, 50, 50);
@@ -32,11 +33,14 @@ const Color background = deepGray;
 
 
 const Color textColor = offWhite;
+const Color hintColor = offWhiteSemiClear;
 const Color iconColor = offWhite;
 
 const textStyle = TextStyle(
   color: textColor,
 );
+
+final hintStyle = textStyle.copyWith(color: hintColor);
 
 final titleStyle = textStyle.copyWith(
   fontSize: 36
