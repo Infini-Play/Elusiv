@@ -5,7 +5,7 @@
       {
         "name": "Run Local with pocketbase",
         "type": "dart",
-        "flutterMode": "profile",
+        "flutterMode": "debug",
         "request": "launch",
         "program": "lib/main.dart",
         "preLaunchTask": "Start pocketbase",
@@ -20,7 +20,7 @@
       {
         "name": "Run Staging",
         "type": "dart",
-        "flutterMode": "profile",
+        "flutterMode": "release",
         "request": "launch",
         "program": "lib/main.dart",
         "env": {
@@ -32,7 +32,7 @@
       {
         "name": "Run Production",
         "type": "dart",
-        "flutterMode": "profile",
+        "flutterMode": "release",
         "request": "launch",
         "program": "lib/main.dart",
         "env": {

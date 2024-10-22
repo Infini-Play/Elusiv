@@ -34,7 +34,7 @@
 		{
 			"label": "Stop pocketbase",
 			"type": "shell",
-			"command": "pkill pocketbase",
+            "command": "if [ \"$OS\" = 'Windows_NT' ]; then taskkill /IM pocketbase.exe /F; else pkill pocketbase; fi",
 			"problemMatcher": [],
 			"presentation": {
 				"reveal": "always",
