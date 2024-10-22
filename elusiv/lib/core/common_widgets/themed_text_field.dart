@@ -5,6 +5,11 @@ import 'package:flutter/material.dart';
 class ThemedTextField extends StatelessWidget {
   final TextEditingController controller;
 
+  final double? width;
+  final double? height;
+  final String? hintText;
+
+
   /// Determines the border width for all edges of the container.
   /// 
   /// This value is not used if [border] is not `null`.
@@ -31,6 +36,9 @@ class ThemedTextField extends StatelessWidget {
     this.borderWidth,
     this.borderRadiusValue,
     this.borderRadius,
+    this.width,
+    this.height,
+    this.hintText,
     this.alternateColors = false,
   });
 
@@ -53,15 +61,21 @@ class ThemedTextField extends StatelessWidget {
       );
     }
 
-    return TextField(
-      controller: controller,
-      decoration: InputDecoration(
-        enabledBorder: OutlineInputBorder(
-          borderRadius: finalBorderRadius,
-          borderSide: ThemedBorderSide(width: borderWidth, alternateColors: !alternateColors).getBorderSide()
+    return SizedBox(
+      width: width,
+      height: height,
+      child: TextField(
+        controller: controller,
+        decoration: InputDecoration(
+          hintText: hintText,
+          hintStyle: hintStyle,
+          enabledBorder: OutlineInputBorder(
+            borderRadius: finalBorderRadius,
+            borderSide: ThemedBorderSide(width: borderWidth, alternateColors: !alternateColors).getBorderSide()
+          ),
+          filled: true,
+          fillColor: fillColor,
         ),
-        filled: true,
-        fillColor: fillColor,
       ),
     );
   }
