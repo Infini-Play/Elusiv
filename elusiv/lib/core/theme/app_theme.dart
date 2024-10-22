@@ -14,6 +14,8 @@ const Color deepGray = Color.fromARGB(255, 62, 62, 62);
 const Color darkGray = Color.fromARGB(255, 50, 50, 50);
 const Color softBlack = Color.fromARGB(255, 27, 27, 27);
 
+const Color clickableBlue = Color.fromARGB(255, 43, 153, 255);
+
 const Color deepMagenta = Color.fromARGB(255, 104, 23, 95);
 
 
@@ -42,8 +44,15 @@ const textStyle = TextStyle(
 
 final hintStyle = textStyle.copyWith(color: hintColor);
 
-final titleStyle = textStyle.copyWith(
+const clickableStyle = TextStyle(
+  color: clickableBlue,
+);
+
+final titleStyleLarge = textStyle.copyWith(
   fontSize: 36
+);
+final titleStyleMedium = textStyle.copyWith(
+  fontSize: 28
 );
 
 ThemeData elusivTheme = ThemeData(

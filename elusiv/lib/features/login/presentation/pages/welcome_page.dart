@@ -1,5 +1,6 @@
 import 'package:elusiv/core/localization/string_extensions.dart';
 import 'package:elusiv/core/navigation/routing.dart';
+import 'package:elusiv/core/theme/app_theme.dart';
 import 'package:elusiv/features/login/presentation/widgets/login_register_button.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -27,6 +28,8 @@ class WelcomePage extends StatelessWidget {
             LoginRegisterButton(
               onTap: goLoginPage,
               message: 'Login'.hardcoded,
+              textStyle: titleStyleLarge,
+              padding: 8,
               elevation: 4,
             ),
 
@@ -35,6 +38,8 @@ class WelcomePage extends StatelessWidget {
             LoginRegisterButton(
               onTap: goRegistrationPage,
               message: 'Register'.hardcoded,
+              textStyle: titleStyleLarge,
+              padding: 8,
               elevation: 4,
               alternateColors: true,
             ),
