@@ -18,6 +18,12 @@ class WelcomePage extends StatelessWidget {
       context.goNamed(AppRoute.registrationPage.name);
     }
 
+    // FOR DEBUGGING OF PROFILE PAGE ONLY 
+    // TO BE REMOVED BEFORE COMMIT
+    // void goProfilePage() {
+    //   context.goNamed(AppRoute.profilePage.name);
+    // }
+
     return Scaffold(
       body: Center(
         child: Column(
@@ -38,6 +44,14 @@ class WelcomePage extends StatelessWidget {
               elevation: 4,
               alternateColors: true,
             ),
+
+            // FOR DEBUGGING OF PROFILE PAGE ONLY 
+            // TO BE REMOVED BEFORE COMMIT
+            // LoginRegisterButton(
+            //   onTap: goProfilePage, 
+            //   message: 'Profile'.hardcoded,
+            //   alternateColors: true,
+            // ),
           ],
         ),
       ),

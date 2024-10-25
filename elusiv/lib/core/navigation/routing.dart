@@ -3,13 +3,15 @@ import 'package:elusiv/features/home/presentation/pages/home_page.dart';
 import 'package:elusiv/features/login/presentation/pages/login_page.dart';
 import 'package:elusiv/features/login/presentation/pages/registration_page.dart';
 import 'package:elusiv/features/login/presentation/pages/welcome_page.dart';
+import 'package:elusiv/features/profile/presentation/pages/profile_page.dart';
 import 'package:go_router/go_router.dart';
 
 enum AppRoute {
   welcomePage,
   loginPage,
   registrationPage,
-  homePage,
+  homePage, 
+  profilePage,
 }
 
 final router = GoRouter(
@@ -30,6 +32,11 @@ final router = GoRouter(
           name: AppRoute.registrationPage.name,
           builder: (context, state) => const RegistrationPage(),
         ),
+        // GoRoute(
+        //   path: 'profile',
+        //   name: AppRoute.profilePage.name,
+        //   builder: (context, state) => const ProfilePage(),
+        // )
       ],
     ),
     GoRoute(
