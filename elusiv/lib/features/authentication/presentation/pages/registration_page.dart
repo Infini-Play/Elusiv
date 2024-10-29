@@ -3,7 +3,7 @@ import 'package:elusiv/core/common_widgets/themed_text_field.dart';
 import 'package:elusiv/core/localization/string_extensions.dart';
 import 'package:elusiv/core/navigation/routing.dart';
 import 'package:elusiv/core/theme/app_theme.dart';
-import 'package:elusiv/features/login/presentation/widgets/login_register_button.dart';
+import 'package:elusiv/features/authentication/presentation/widgets/login_register_button.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -11,8 +11,8 @@ class RegistrationPage extends StatelessWidget {
   const RegistrationPage({super.key});
 
 
-  void register(BuildContext context) {
-
+  void register(BuildContext context, TextEditingController usernameController, TextEditingController passwordController, TextEditingController confirmPasswordController) {
+  
   }
 
   void loginRedirect(BuildContext context) {
@@ -81,7 +81,7 @@ class RegistrationPage extends StatelessWidget {
                   ), heightPerObject),
               
                   wrap(LoginRegisterButton(
-                    onTap: () => register(context),
+                    onTap: () => register(context, usernameController, passwordController, confirmPasswordController),
                     message: 'Register'.hardcoded,
                     textStyle: titleStyleMedium,
                     padding: 4,
