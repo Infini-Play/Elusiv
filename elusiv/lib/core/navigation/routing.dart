@@ -18,7 +18,7 @@ final router = GoRouter(
     GoRoute(
       path: '/welcome',
       name: AppRoute.welcomePage.name,
-      builder: (context, state) => const WelcomePage(),
+      builder: (context, state) => const VerifiedPage(),
       routes: [
         GoRoute(
           path: 'login',
