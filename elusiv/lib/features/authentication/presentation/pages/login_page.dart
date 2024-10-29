@@ -3,7 +3,7 @@ import 'package:elusiv/core/common_widgets/themed_text_field.dart';
 import 'package:elusiv/core/localization/string_extensions.dart';
 import 'package:elusiv/core/navigation/routing.dart';
 import 'package:elusiv/core/theme/app_theme.dart';
-import 'package:elusiv/features/login/presentation/widgets/login_register_button.dart';
+import 'package:elusiv/features/authentication/presentation/widgets/login_register_button.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -11,8 +11,11 @@ class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
 
-  void login(BuildContext context) {
+  void login(BuildContext context, TextEditingController usernameController, TextEditingController passwordController) {
+    // Only perform an action if the username and password fields have text
+    if (usernameController.text.isNotEmpty && passwordController.text.isNotEmpty) {
 
+    }
   }
 
   void forgotPasswordRedirect(BuildContext context) {
@@ -93,7 +96,7 @@ class LoginPage extends StatelessWidget {
                   ), heightPerObject),
               
                   wrap(LoginRegisterButton(
-                    onTap: () => login(context),
+                    onTap: () => login(context, usernameController, passwordController),
                     message: 'Login'.hardcoded,
                     textStyle: titleStyleMedium,
                     padding: 4,
