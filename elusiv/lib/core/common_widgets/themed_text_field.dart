@@ -8,6 +8,7 @@ class ThemedTextField extends StatelessWidget {
   final double? width;
   final double? height;
   final String? hintText;
+  final TextStyle? hintStyle;
 
 
   /// Determines the border width for all edges of the container.
@@ -39,6 +40,7 @@ class ThemedTextField extends StatelessWidget {
     this.width,
     this.height,
     this.hintText,
+    this.hintStyle,
     this.alternateColors = false,
   });
 

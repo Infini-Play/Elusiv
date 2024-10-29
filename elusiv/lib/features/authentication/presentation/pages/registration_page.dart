@@ -11,7 +11,7 @@ class RegistrationPage extends StatelessWidget {
   const RegistrationPage({super.key});
 
 
-  void register(BuildContext context, TextEditingController usernameController, TextEditingController passwordController, TextEditingController confirmPasswordController) {
+  void register(BuildContext context, TextEditingController emailController, TextEditingController passwordController, TextEditingController confirmPasswordController) {
   
   }
 
@@ -28,7 +28,7 @@ class RegistrationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final usernameController = TextEditingController();
+    final emailController = TextEditingController();
     final passwordController = TextEditingController();
     final confirmPasswordController = TextEditingController();
     final width = MediaQuery.of(context).size.width * 0.75;
@@ -41,7 +41,7 @@ class RegistrationPage extends StatelessWidget {
         children: <TextSpan>[
           TextSpan(
             text: 'Login now'.hardcoded,
-            style: clickableStyle,
+            style: clickableStyleMedium,
           )
         ]
       )
@@ -66,8 +66,8 @@ class RegistrationPage extends StatelessWidget {
                 children: [
               
                   wrap(ThemedTextField(
-                    hintText: 'Username'.hardcoded,
-                    controller: usernameController,
+                    hintText: 'Email'.hardcoded,
+                    controller: emailController,
                   ), heightPerObject),
               
                   wrap(ThemedTextField(
@@ -81,7 +81,7 @@ class RegistrationPage extends StatelessWidget {
                   ), heightPerObject),
               
                   wrap(LoginRegisterButton(
-                    onTap: () => register(context, usernameController, passwordController, confirmPasswordController),
+                    onTap: () => register(context, emailController, passwordController, confirmPasswordController),
                     message: 'Register'.hardcoded,
                     textStyle: titleStyleMedium,
                     padding: 4,
