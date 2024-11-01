@@ -11,15 +11,15 @@ class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
 
-  void login(BuildContext context, TextEditingController usernameController, TextEditingController passwordController) {
-    // Only perform an action if the username and password fields have text
-    if (usernameController.text.isNotEmpty && passwordController.text.isNotEmpty) {
+  void login(BuildContext context, TextEditingController emailController, TextEditingController passwordController) {
+    // Only perform an action if the email and password fields have text
+    if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
 
     }
   }
 
   void forgotPasswordRedirect(BuildContext context) {
-
+    context.goNamed(AppRoute.forgotPasswordPage.name);
   }
 
   void registerRedirect(BuildContext context) {
@@ -35,7 +35,7 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final usernameController = TextEditingController();
+    final emailController = TextEditingController();
     final passwordController = TextEditingController();
     final width = MediaQuery.of(context).size.width * 0.75;
     const double heightPerObject = 60;
@@ -47,7 +47,7 @@ class LoginPage extends StatelessWidget {
         children: <TextSpan>[
           TextSpan(
             text: 'Register now'.hardcoded,
-            style: clickableStyle,
+            style: clickableStyleMedium,
           )
         ]
       )
@@ -73,8 +73,8 @@ class LoginPage extends StatelessWidget {
                 children: [
               
                   wrap(ThemedTextField(
-                    hintText: 'Username'.hardcoded,
-                    controller: usernameController,
+                    hintText: 'Email'.hardcoded,
+                    controller: emailController,
                   ), heightPerObject),
               
                   wrap(ThemedTextField(
@@ -96,7 +96,7 @@ class LoginPage extends StatelessWidget {
                   ), heightPerObject),
               
                   wrap(LoginRegisterButton(
-                    onTap: () => login(context, usernameController, passwordController),
+                    onTap: () => login(context, emailController, passwordController),
                     message: 'Login'.hardcoded,
                     textStyle: titleStyleMedium,
                     padding: 4,
