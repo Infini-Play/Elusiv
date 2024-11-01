@@ -11,6 +11,7 @@ import 'package:go_router/go_router.dart';
 enum AppRoute {
   welcomePage,
   loginPage,
+  forgotPasswordPage,
   registrationPage,
   homePage,
   forgotPassword,

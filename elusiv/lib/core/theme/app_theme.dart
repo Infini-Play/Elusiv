@@ -38,21 +38,56 @@ const Color textColor = offWhite;
 const Color hintColor = offWhiteSemiClear;
 const Color iconColor = offWhite;
 
+
 const textStyle = TextStyle(
   color: textColor,
+  fontSize: 16
 );
 
-final hintStyle = textStyle.copyWith(color: hintColor);
+final titleStyle = textStyle.copyWith(
+  // Difference to make this a title
+);
 
-const clickableStyle = TextStyle(
+// different sizes of titleStyle
+final titleStyleLarge = titleStyle.copyWith(
+  fontSize: 36,
+);
+final titleStyleMedium = titleStyle.copyWith(
+  fontSize: 28,
+);
+final titleStyleSmall = titleStyle.copyWith(
+  fontSize: 22,
+);
+
+final textStyleLarge = textStyle.copyWith(
+  fontSize: 20,
+);
+final textStyleMedium = textStyle.copyWith(
+  // this is just here for formatting reasons
+  // this TextStyle is no different than textStyle
+);
+final textStyleSmall = textStyle.copyWith(
+  fontSize: 12,
+);
+
+final hintStyleLarge = textStyleLarge.copyWith(
+  color: hintColor,
+);
+final hintStyleMedium = textStyleMedium.copyWith(
+  color: hintColor,
+);
+final hintStyleSmall = textStyleSmall.copyWith(
+  color: hintColor,
+);
+
+final clickableStyleLarge = textStyleLarge.copyWith(
   color: clickableBlue,
 );
-
-final titleStyleLarge = textStyle.copyWith(
-  fontSize: 36
+final clickableStyleMedium = textStyleMedium.copyWith(
+  color: clickableBlue,
 );
-final titleStyleMedium = textStyle.copyWith(
-  fontSize: 28
+final clickableStyleSmall = textStyleSmall.copyWith(
+  color: clickableBlue,
 );
 
 ThemeData elusivTheme = ThemeData(

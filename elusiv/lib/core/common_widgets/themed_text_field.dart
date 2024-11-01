@@ -7,6 +7,12 @@ class ThemedTextField extends StatelessWidget {
   final double? width;
   final double? height;
   final String? hintText;
+  final TextStyle? hintStyle;
+
+
+  /// Determines the border width for all edges of the container.
+  /// 
+  /// This value is not used if [border] is not `null`.
   final double? borderWidth;
   final bool alternateColors;
   final BorderRadius? borderRadius;
@@ -23,6 +29,7 @@ class ThemedTextField extends StatelessWidget {
     this.width,
     this.height,
     this.hintText,
+    this.hintStyle,
     this.alternateColors = false,
     this.obscureText = false,
     this.keyboardType, // New property initialization
