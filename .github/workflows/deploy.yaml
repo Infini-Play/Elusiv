@@ -3,8 +3,9 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - main
-      - staging
+        - non-existent-branch
+    #   - main
+    #   - staging
 
 jobs:
   build_flutter:
