@@ -1,4 +1,5 @@
 
+import 'package:elusiv/features/authentication/presentation/pages/forgot_password_page.dart';
 import 'package:elusiv/features/home/presentation/pages/home_page.dart';
 import 'package:elusiv/features/authentication/presentation/pages/login_page.dart';
 import 'package:elusiv/features/authentication/presentation/pages/registration_page.dart';
@@ -8,6 +9,7 @@ import 'package:go_router/go_router.dart';
 enum AppRoute {
   welcomePage,
   loginPage,
+  forgotPasswordPage,
   registrationPage,
   homePage,
 }
@@ -24,6 +26,13 @@ final router = GoRouter(
           path: 'login',
           name: AppRoute.loginPage.name,
           builder: (context, state) => const LoginPage(),
+          routes: [
+            GoRoute(
+              path: 'forgot_password',
+              name: AppRoute.forgotPasswordPage.name,
+              builder: (context, state) => const ForgotPasswordPage(),
+            )
+          ],
         ),
         GoRoute(
           path: 'registration',
