@@ -4,31 +4,15 @@ import 'package:flutter/material.dart';
 
 class ThemedTextField extends StatelessWidget {
   final TextEditingController controller;
-
   final double? width;
   final double? height;
   final String? hintText;
-
-
-  /// Determines the border width for all edges of the container.
-  /// 
-  /// This value is not used if [border] is not `null`.
   final double? borderWidth;
-
-  /// Whether the alternate color scheme is used or not.
-  /// 
-  /// Set to `true` to use the alternate colors.
   final bool alternateColors;
-
-  /// Determines the [borderRadius] of the container.
-  /// 
-  /// Overrides [borderRadiusValue] if not `null`.
   final BorderRadius? borderRadius;
-
-  /// Determines the border radius value for all corners of the container.
-  /// 
-  /// This value is not used if [borderRadius] is not `null`.
   final double? borderRadiusValue;
+  final bool obscureText;
+  final TextInputType? keyboardType; // New property
 
   const ThemedTextField({
     super.key,
@@ -40,19 +24,21 @@ class ThemedTextField extends StatelessWidget {
     this.height,
     this.hintText,
     this.alternateColors = false,
+    this.obscureText = false,
+    this.keyboardType, // New property initialization
   });
 
   @override
   Widget build(BuildContext context) {
-
     final fillColor = !alternateColors ? secondary : primary;
 
     BorderRadius finalBorderRadius;
-    if (borderRadius != null) {finalBorderRadius = borderRadius!;}
-    else {
+    if (borderRadius != null) {
+      finalBorderRadius = borderRadius!;
+    } else {
       final borderRadiusvalues = borderRadiusValue != null 
-      ? Radius.circular(borderRadiusValue!)
-      : const Radius.circular(8);
+        ? Radius.circular(borderRadiusValue!)
+        : const Radius.circular(8);
       finalBorderRadius = BorderRadius.only(
         topLeft: borderRadiusvalues,
         topRight: borderRadiusvalues,
@@ -66,6 +52,8 @@ class ThemedTextField extends StatelessWidget {
       height: height,
       child: TextField(
         controller: controller,
+        obscureText: obscureText,
+        keyboardType: keyboardType, // Use the new property
         decoration: InputDecoration(
           hintText: hintText,
           hintStyle: hintStyle,
