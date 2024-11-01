@@ -89,7 +89,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
     final loginText = Text.rich(TextSpan(text: 'Already have an account? '.hardcoded, style: textStyle, children: <TextSpan>[
       TextSpan(
         text: 'Login now'.hardcoded,
-        style: clickableStyle,
+        style: clickableStyleMedium,
       )
     ]));
 

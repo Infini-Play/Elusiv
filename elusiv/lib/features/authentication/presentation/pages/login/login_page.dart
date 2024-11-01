@@ -40,6 +40,7 @@ class _LoginPageState extends State<LoginPage> {
         }
       }).catchError((error) {
         // Show an error message if the login fails
+        //TODO: Implement error handling
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.toString())));
       });
     }
@@ -68,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
     final signUpText = Text.rich(TextSpan(text: 'Don\'t have an account? '.hardcoded, style: textStyle, children: <TextSpan>[
       TextSpan(
         text: 'Register now'.hardcoded,
-        style: clickableStyle,
+        style: clickableStyleMedium,
       )
     ]));
 

@@ -12,9 +12,7 @@ class ForgotPasswordPage extends StatelessWidget {
 
   void sendEmail(BuildContext context, TextEditingController emailController) {
     // Only perform an action if the email and password fields have text
-    if (emailController.text.isNotEmpty) {
-
-    }
+    if (emailController.text.isNotEmpty) {}
   }
 
   void loginRedirect(BuildContext context) {
@@ -32,74 +30,74 @@ class ForgotPasswordPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final emailController = TextEditingController();
     final width = MediaQuery.of(context).size.width * 0.75;
-    const double heightPerObject = 60;
+    const double heightPerObject = 75;
 
     final goBackText = Text(
       'Back to Login'.hardcoded,
-      style: clickableStyleLarge,
+      style: clickableStyleMedium,
     );
-
 
     return Scaffold(
       appBar: GoNamedBackButtonTesting(name: AppRoute.welcomePage.name),
-      body: Center(
-        child: SizedBox(
-          width: width,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-
-              wrap(Text(
-                'LOGO GOES HERE'.hardcoded
-                ), heightPerObject
-              ),
-
-
-              Column(
-                children: [
-
-                  wrap(Text(
-                    'Forgot your password?'.hardcoded,
-                    style: titleStyleMedium,
-                  ), heightPerObject),
-
-                  wrap(Text(
-                    'Enter your email address below and we\'ll send you instructions to reset your password.'.hardcoded,
-                    textAlign: TextAlign.center,
-                    style: textStyleMedium
-                  ), heightPerObject),
-
-                ],
-              ),
-
-              
-
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-              
-                  wrap(ThemedTextField(
-                    hintText: 'Email'.hardcoded,
-                    controller: emailController,
-                  ), heightPerObject),
-              
-                  wrap(LoginRegisterButton(
-                    onTap: () => sendEmail(context, emailController),
-                    message: 'Send Email'.hardcoded,
-                    textStyle: titleStyleMedium,
-                    padding: 4,
-                    elevation: 4,
-                  ), heightPerObject),
-              
-                ],
-              ),
-
-              wrap(GestureDetector(
-                onTap: () => loginRedirect(context),
-                child: goBackText,
-              ), heightPerObject)
-
-            ],
+      body: SingleChildScrollView(
+        child: Center(
+          child: SizedBox(
+            width: width,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(height: 80),
+                Image.asset(
+                  'assets/images/logo.jpg',
+                  width: 150,
+                  height: 150,
+                ),
+                const Text(
+                  'Elusiv',
+                  style: TextStyle(
+                    fontFamily: 'RobotoMono',
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 2.0,
+                    height: 1.5,
+                  ),
+                ),
+                const SizedBox(height: 50),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    wrap(
+                        Text(
+                          'Forgot your password?'.hardcoded,
+                          style: titleStyleMedium,
+                        ),
+                        heightPerObject),
+                    wrap(
+                        ThemedTextField(
+                          hintText: 'Email'.hardcoded,
+                          controller: emailController,
+                        ),
+                        heightPerObject),
+                    wrap(
+                        LoginRegisterButton(
+                          onTap: () => sendEmail(context, emailController),
+                          message: 'Send Reset Email'.hardcoded,
+                          textStyle: titleStyleMedium,
+                          padding: 4,
+                          elevation: 4,
+                        ),
+                        heightPerObject),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                wrap(
+                    GestureDetector(
+                      onTap: () => loginRedirect(context),
+                      child: goBackText,
+                    ),
+                    heightPerObject)
+              ],
+            ),
           ),
         ),
       ),
