@@ -32,11 +32,11 @@ final router = GoRouter(
           name: AppRoute.registrationPage.name,
           builder: (context, state) => const RegistrationPage(),
         ),
-        // GoRoute(
-        //   path: 'profile',
-        //   name: AppRoute.profilePage.name,
-        //   builder: (context, state) => const ProfilePage(),
-        // )
+        GoRoute(
+          path: 'profile',
+          name: AppRoute.profilePage.name,
+          builder: (context, state) => const ProfilePage(),
+        )
       ],
     ),
     GoRoute(

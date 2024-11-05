@@ -20,9 +20,9 @@ class WelcomePage extends StatelessWidget {
 
     // FOR DEBUGGING OF PROFILE PAGE ONLY 
     // TO BE REMOVED BEFORE COMMIT
-    // void goProfilePage() {
-    //   context.goNamed(AppRoute.profilePage.name);
-    // }
+    void goProfilePage() {
+      context.goNamed(AppRoute.profilePage.name);
+    }
 
     return Scaffold(
       body: Center(
@@ -47,11 +47,11 @@ class WelcomePage extends StatelessWidget {
 
             // FOR DEBUGGING OF PROFILE PAGE ONLY 
             // TO BE REMOVED BEFORE COMMIT
-            // LoginRegisterButton(
-            //   onTap: goProfilePage, 
-            //   message: 'Profile'.hardcoded,
-            //   alternateColors: true,
-            // ),
+            LoginRegisterButton(
+              onTap: goProfilePage, 
+              message: 'Profile'.hardcoded,
+              alternateColors: true,
+            ),
           ],
         ),
       ),

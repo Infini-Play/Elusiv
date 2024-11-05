@@ -33,17 +33,53 @@ class ProfilePage extends StatelessWidget {
                   height: 225,
                 ),
 
+                // Name text
+                const Positioned(
+                  top: 50,
+                  child: Text(
+                    'PROFILE NAME',
+                    style: TextStyle(
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+
+                // Username text
+                const Positioned(
+                  top: 95,
+                  child: Text(
+                    '@username',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+
                 // Profile Picture
                 const Positioned(
                   top: 150,
-                  child: CircleAvatar(
-                    backgroundColor: lightGray,
-                    radius: 75,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      CircleAvatar(
+                        backgroundColor: lightGray,
+                        radius: 75,
+                      ),
+                      Icon(
+                        Icons.person,
+                        size: 75,
+                        color: Colors.white,
+                      ),
+                    ],
                   ),
                 ),
               ],
             ),
-
+            
             const SizedBox(height: 125),
 
             // Profile information
@@ -52,43 +88,133 @@ class ProfilePage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-									
-									// Phone Number
+                  // Phone Number
                   Padding(
                     padding: const EdgeInsets.only(bottom: 25.0),
                     child: Container(
                       height: 60,
                       decoration: BoxDecoration(
-                        color: Colors.deepPurple,
-												borderRadius: BorderRadius.circular(25),
+                        color: lightGray,
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: const Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(left: 16.0),
+                            child: Icon(
+                              Icons.man,
+                              color: Colors.white,
+                            ),
+                          ),
+                          SizedBox(width: 60),
+                          Text(
+                            'Friends',
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
 
-									// Discord
+                  // Discord
                   Padding(
                     padding: const EdgeInsets.only(bottom: 25.0),
                     child: Container(
                       height: 60,
                       decoration: BoxDecoration(
-                        color: Colors.deepPurple,
-												borderRadius: BorderRadius.circular(25),
+                        color: lightGray,
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: const Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(left: 16.0),
+                            child: Icon(
+                              Icons.discord,
+                              color: Colors.white,
+                            ),
+                          ),
+                          SizedBox(width: 60),
+                          Text(
+                            'Discord',
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
 
-									// Instagram
+                  // Phone Number
                   Padding(
                     padding: const EdgeInsets.only(bottom: 25.0),
                     child: Container(
                       height: 60,
                       decoration: BoxDecoration(
-                        color: Colors.deepPurple,
-												borderRadius: BorderRadius.circular(25),
+                        color: lightGray,
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: const Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(left: 16.0),
+                            child: Icon(
+                              Icons.phone,
+                              color: Colors.white,
+                            ),
+                          ),
+                          SizedBox(width: 60),
+                          Text(
+                            'Phone Number',
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
 
+                  // Settings
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 25.0),
+                    child: Container(
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: lightGray,
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: const Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(left: 16.0),
+                            child: Icon(
+                              Icons.settings,
+                              color: Colors.white,
+                            ),
+                          ),
+                          SizedBox(width: 60),
+                          Text(
+                            'Settings',
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
