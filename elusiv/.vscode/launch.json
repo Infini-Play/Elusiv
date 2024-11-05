@@ -2,20 +2,32 @@
     "version": "0.2.0",
     "configurations": [
 
-      {
-        "name": "Run Local with pocketbase",
-        "type": "dart",
-        "flutterMode": "debug",
-        "request": "launch",
-        "program": "lib/main.dart",
-        "preLaunchTask": "Start pocketbase",
-        "postDebugTask": "Stop pocketbase",
-        "env": {
-          "FLAVOR": "local"
-        },
-        "cwd": "${workspaceFolder}"
+    {
+      "name": "Run Local with pocketbase (iOS)",
+      "type": "dart",
+      "flutterMode": "debug",
+      "request": "launch",
+      "program": "lib/main.dart",
+      "preLaunchTask": "Start pocketbase",
+      "postDebugTask": "Stop pocketbase",
+      "env": {
+        "FLAVOR": "local_ios"
       },
-
+      "cwd": "${workspaceFolder}",
+    },
+    {
+      "name": "Run Local with pocketbase (Android)",
+      "type": "dart",
+      "flutterMode": "debug",
+      "request": "launch",
+      "program": "lib/main.dart",
+      "preLaunchTask": "Start pocketbase",
+      "postDebugTask": "Stop pocketbase",
+      "env": {
+        "FLAVOR": "local_android"
+      },
+      "cwd": "${workspaceFolder}",
+    },
 
       {
         "name": "Run Staging",

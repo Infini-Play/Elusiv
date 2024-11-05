@@ -8,7 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // Determine the environment and load the corresponding .env file
-  const String env = String.fromEnvironment('FLAVOR', defaultValue: 'local');
+  const String env = String.fromEnvironment('FLAVOR', defaultValue: 'local_android');
   String apiURl;
   switch (env) {
     case 'staging':
@@ -17,9 +17,12 @@ Future<void> main() async {
     case 'prod':
       apiURl = 'https://elusiv.infiniplay.games/';
       break;
-    case 'local':
+    case 'local_ios':
+      apiURl = 'http://127.0.0.1:8090'; // iOS simulator can use localhost
+      break;
+    case 'local_android':
     default:
-      apiURl = 'http://127.0.0.1:8090';
+      apiURl = 'http://10.0.2.2:8090'; // Android emulator uses 10.0.2.2 to access host machine
       break;
   }
 
