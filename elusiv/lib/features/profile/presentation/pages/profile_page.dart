@@ -79,12 +79,146 @@ class ProfilePage extends StatelessWidget {
                 ),
               ],
             ),
-            
-            const SizedBox(height: 125),
+
+            const SizedBox(height: 75),
+
+            // Stats: Kills, Losses, Wins
+            Padding(
+              padding: const EdgeInsets.all(25.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+
+                  // Wins
+                  Container(
+                    height: 110,
+                    width: 110,
+                    decoration: BoxDecoration(
+                        color: lightGray,
+                        borderRadius: BorderRadius.circular(25)
+                    ),
+                    child: const Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+
+                        // Number of wins to be made dynamic later
+                        Padding(
+                          padding: EdgeInsets.only(top: 8.0, bottom: 0.0), // Reduced bottom padding
+                          child: Text(
+                            '100',
+                            style: TextStyle(
+                              fontSize: 48,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+
+                        Padding(
+                          padding: EdgeInsets.only(top: 0.0, ), // Added top padding
+                          child: Text(
+                            'Wins',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(width: 15),
+
+                  // Losses
+                  Container(
+                    height: 110,
+                    width: 110,
+                    decoration: BoxDecoration(
+                        color: lightGray,
+                        borderRadius: BorderRadius.circular(25)
+                    ),
+                    child: const Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+
+                        // Number of Losses to be made dynamic later
+                        Padding(
+                          padding: EdgeInsets.only(top: 8.0, bottom: 0.0), // Reduced bottom padding
+                          child: Text(
+                            '0',
+                            style: TextStyle(
+                              fontSize: 48,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+
+                        Padding(
+                          padding: EdgeInsets.only(top: 0.0, ), // Added top padding
+                          child: Text(
+                            'Losses',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  // Kills
+                  const SizedBox(width: 15),
+                  Container(
+                    height: 110,
+                    width: 110,
+                    decoration: BoxDecoration(
+                        color: lightGray,
+                        borderRadius: BorderRadius.circular(25)
+                      ),
+                      child: const Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+
+                        // Number of Kills to be made dynamic later
+                        Padding(
+                          padding: EdgeInsets.only(top: 8.0, bottom: 0.0), // Reduced bottom padding
+                          child: Text(
+                            '52',
+                            style: TextStyle(
+                              fontSize: 48,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+
+                        Padding(
+                          padding: EdgeInsets.only(top: 0.0, ), // Added top padding
+                          child: Text(
+                            'Kills',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
 
             // Profile information
             Padding(
-              padding: const EdgeInsets.all(25.0),
+              padding:
+                  const EdgeInsets.only(left: 25.0, right: 25.0, bottom: 25.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -120,71 +254,7 @@ class ProfilePage extends StatelessWidget {
                     ),
                   ),
 
-                  // Discord
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 25.0),
-                    child: Container(
-                      height: 60,
-                      decoration: BoxDecoration(
-                        color: lightGray,
-                        borderRadius: BorderRadius.circular(25),
-                      ),
-                      child: const Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(left: 16.0),
-                            child: Icon(
-                              Icons.discord,
-                              color: Colors.white,
-                            ),
-                          ),
-                          SizedBox(width: 60),
-                          Text(
-                            'Discord',
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-
-                  // Phone Number
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 25.0),
-                    child: Container(
-                      height: 60,
-                      decoration: BoxDecoration(
-                        color: lightGray,
-                        borderRadius: BorderRadius.circular(25),
-                      ),
-                      child: const Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(left: 16.0),
-                            child: Icon(
-                              Icons.phone,
-                              color: Colors.white,
-                            ),
-                          ),
-                          SizedBox(width: 60),
-                          Text(
-                            'Phone Number',
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-
-                  // Settings
+                  // Edit profile
                   Padding(
                     padding: const EdgeInsets.only(bottom: 25.0),
                     child: Container(
@@ -204,7 +274,7 @@ class ProfilePage extends StatelessWidget {
                           ),
                           SizedBox(width: 60),
                           Text(
-                            'Settings',
+                            'Edit Profile',
                             style: TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
