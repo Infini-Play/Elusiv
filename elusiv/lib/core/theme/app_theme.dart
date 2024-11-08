@@ -41,7 +41,7 @@ const Color iconColor = offWhite;
 
 const textStyle = TextStyle(
   color: textColor,
-  fontSize: 16
+  fontSize: 16,
 );
 
 final titleStyle = textStyle.copyWith(
