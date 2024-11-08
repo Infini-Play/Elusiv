@@ -2,12 +2,18 @@ import 'package:elusiv/core/common_widgets/test_widgets/go_named_back_button_tes
 import 'package:elusiv/core/navigation/routing.dart';
 import 'package:elusiv/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+
+    void goProfileSettingsPage() {
+      context.goNamed(AppRoute.profileSettingsPage.name);
+    }
+
     return Scaffold(
       appBar: GoNamedBackButtonTesting(name: AppRoute.welcomePage.name),
       body: Center(
@@ -246,36 +252,66 @@ class ProfilePage extends StatelessWidget {
                   ),
 
                   // Edit profile
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 25.0),
-                    child: Container(
-                      height: 60,
-                      decoration: BoxDecoration(
-                        color: lightGray,
-                        borderRadius: BorderRadius.circular(25),
-                      ),
-                      child: const Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(left: 16.0),
-                            child: Icon(
-                              Icons.settings,
-                              color: Colors.white,
-                            ),
+                  // Padding(
+                  //   padding: const EdgeInsets.only(bottom: 25.0),
+                  //   child: Container(
+                  //     height: 60,
+                  //     decoration: BoxDecoration(
+                  //       color: lightGray,
+                  //       borderRadius: BorderRadius.circular(25),
+                  //     ),
+                  //     child: const Row(
+                  //       children: [
+                  //         Padding(
+                  //           padding: EdgeInsets.only(left: 16.0),
+                  //           child: Icon(
+                  //             Icons.settings,
+                  //             color: Colors.white,
+                  //           ),
+                  //         ),
+                  //         SizedBox(width: 60),
+                  //         Text(
+                  //           'Edit Profile',
+                  //           style: TextStyle(
+                  //             fontSize: 24,
+                  //             fontWeight: FontWeight.bold,
+                  //             color: Colors.white,
+                  //           ),
+                  //         ),
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
+                GestureDetector(
+                  onTap: goProfileSettingsPage,
+                  child: Container(
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: lightGray,
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                    child: const Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(left: 16.0),
+                          child: Icon(
+                            Icons.settings,
+                            color: Colors.white,
                           ),
-                          SizedBox(width: 60),
-                          Text(
-                            'Edit Profile',
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
+                        ),
+                        SizedBox(width: 60),
+                        Text(
+                          'Edit Profile',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
+                ),
                 ],
               ),
             ),

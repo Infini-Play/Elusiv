@@ -7,6 +7,28 @@ class ProfileSettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: GoNamedBackButtonTesting(name: AppRoute.profilePage.name),
+      body: ListView(
+        children: [
+          ListTile(
+            title: const Text('Change Profile Picture'),
+            onTap: () {},
+          ),
+          ListTile(
+            title: const Text('Change Username'),
+            onTap: () {},
+          ),
+          ListTile(
+            title: const Text('Change Password'),
+            onTap: () {},
+          ),
+          ListTile(
+            title: const Text('Delete Account'),
+            onTap: () {},
+          ),
+        ],
+      ),
+    );
   }
 }
