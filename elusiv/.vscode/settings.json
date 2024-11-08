@@ -1,5 +1,8 @@
 {
-    "dart.flutterHotReloadOnSave": "allIfDirty",
-    "dart.hotReloadOnSave": "allIfDirty",
-    "java.configuration.updateBuildConfiguration": "automatic"
+	"dart.flutterHotReloadOnSave": "allIfDirty",
+	"dart.hotReloadOnSave": "allIfDirty",
+	"java.configuration.updateBuildConfiguration": "automatic",
+    "dart.lineLength": 250,
+    "editor.rulers": [250],
+	"prettier.tabWidth": 2,
 }
