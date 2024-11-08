@@ -3,15 +3,6 @@ import 'package:elusiv/core/navigation/routing.dart';
 import 'package:elusiv/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
-/*
- *  THINGS TO INCLUDE
- *      1. Profile Picture
- *      2. Username
- *      3. Profile name
- *      4. Friends?
- *      5. Phone Number?
- */
-
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
