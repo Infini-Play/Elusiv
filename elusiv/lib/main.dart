@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:pocketbase/pocketbase.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:elusiv/features/authentication/providers/auth_provider.dart';
+import 'package:elusiv/features/authentication/repositories/user_repo.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,7 +24,7 @@ Future<void> main() async {
       break;
     case 'local_android':
     default:
-      apiURl = 'http://10.0.2.2:8090'; // Android emulator uses 10.0.2.2 to access host machine
+      apiURl = 'http://127.0.0.1:8090'; // Android emulator uses 10.0.2.2 to access host machine
       break;
   }
 
@@ -49,8 +51,17 @@ Future<void> main() async {
   //pb.authStore.isValid();
 
   runApp(
-    Provider<PocketBase>.value(
-      value: pb,
+    MultiProvider(
+      providers: [
+        Provider<PocketBase>.value(value: pb),
+        Provider<UserRepository>(
+          create: (_) => UserRepository.getInstance(pb),
+        ),
+        ChangeNotifierProvider<AuthProvider>(
+          create: (context) => AuthProvider(Provider.of<UserRepository>(context, listen: false),
+          ),
+        ),
+      ],
       child: const Elusiv(),
     ),
   );

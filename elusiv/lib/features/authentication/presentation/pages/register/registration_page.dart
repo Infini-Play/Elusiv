@@ -8,15 +8,16 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pocketbase/pocketbase.dart';
 import 'package:provider/provider.dart';
+import 'package:elusiv/features/authentication/providers/auth_provider.dart';
 
 class RegistrationPage extends StatefulWidget {
   const RegistrationPage({super.key});
 
   @override
-  _RegistrationPageState createState() => _RegistrationPageState();
+  RegistrationPageState createState() => RegistrationPageState();
 }
 
-class _RegistrationPageState extends State<RegistrationPage> {
+class RegistrationPageState extends State<RegistrationPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
@@ -36,19 +37,17 @@ class _RegistrationPageState extends State<RegistrationPage> {
     final password = passwordController.text;
     final confirmPassword = confirmPasswordController.text;
 
-    //check if the passwords match
     if (password != confirmPassword) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Passwords do not match!'.hardcoded)),
       );
       return;
     }
-    //create a new user with pb
-    final pb = Provider.of<PocketBase>(context, listen: false);
+
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
 
     try {
-      //register the user and then go to verify email page
-      await pb.collection('users').create(body: {'email': email, 'password': password, 'passwordConfirm': password});
+      await authProvider.createUser({'email': email, 'password': password, 'passwordConfirm': password});
       if (context.mounted) {
         context.goNamed(
           AppRoute.verifyEmail.name,
@@ -56,17 +55,13 @@ class _RegistrationPageState extends State<RegistrationPage> {
         );
       }
     } catch (error) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(error.toString())),
-      );
+      if (!mounted) return;
+      final errorString = error.toString();
+      final start = errorString.indexOf('message:');
+      final end = errorString.indexOf(",", start);
+      final message = errorString.substring(start + 9, end);
 
-      //for testing purposes
-      // if (context.mounted) {
-      //   context.goNamed(
-      //     AppRoute.verifyEmail.name,
-      //     extra: {'email': email, 'password': password},
-      //   );
-      // }
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
     }
   }
 

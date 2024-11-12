@@ -7,16 +7,16 @@ import 'package:elusiv/features/authentication/presentation/widgets/login_regist
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:pocketbase/pocketbase.dart';
+import 'package:elusiv/features/authentication/providers/auth_provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  LoginPageState createState() => LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class LoginPageState extends State<LoginPage> {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -28,20 +28,20 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void login(BuildContext context, TextEditingController usernameController, TextEditingController passwordController) {
-    // Only perform an action if the username and password fields have text
     if (usernameController.text.isNotEmpty && passwordController.text.isNotEmpty) {
-      //login and then go to home page
-
-      //TODO: Copy error handling from the registration page
-      final pb = Provider.of<PocketBase>(context, listen: false);
-      pb.collection('users').authWithPassword(usernameController.text, passwordController.text).then((user) {
+      final authProvider = Provider.of<AuthProvider>(context, listen: false);
+      authProvider.authenticateUser(usernameController.text, passwordController.text).then((_) {
         if (context.mounted) {
           context.goNamed(AppRoute.homePage.name);
         }
       }).catchError((error) {
-        // Show an error message if the login fails
-        //TODO: Implement error handling
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.toString())));
+        if (!mounted) return;
+        final errorString = error.toString();
+        final start = errorString.indexOf('message:');
+        final end = errorString.indexOf(",", start);
+        final message = errorString.substring(start + 9, end);
+
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
       });
     }
   }
@@ -104,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     wrap(
                         ThemedTextField(
-                          hintText: 'Username'.hardcoded,
+                          hintText: 'Email or Username'.hardcoded,
                           controller: usernameController,
                         ),
                         heightPerObject),

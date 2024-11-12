@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:pocketbase/pocketbase.dart';
 import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
+import 'package:elusiv/features/authentication/providers/auth_provider.dart';
 
 class VerifyEmailPage extends StatefulWidget {
   final String email;
@@ -50,23 +51,25 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
 
   void _startPolling() {
     _pollingTimer = Timer.periodic(const Duration(seconds: 5), (timer) async {
-      
-      try{
-      final user = await pb.collection('users').authWithPassword(widget.email, widget.password);
+      try {
+        final authProvider = Provider.of<AuthProvider>(context, listen: false);
+        await authProvider.authenticateUser(widget.email, widget.password);
 
-      if (user.record?.getBoolValue('verified') == true) {
-        timer.cancel();
-        setState(() {
-          _message = 'Account Verified!';
-        });
-        _controller.play();
-        if (context.mounted) {
-          Future.delayed(const Duration(seconds: 5), () {
-            context.goNamed(AppRoute.additionalInfo.name);
+        if (authProvider.currentUser?.verified == true) {
+          timer.cancel();
+          setState(() {
+            _message = 'Account Verified!';
           });
+          _controller.play();
+          if (context.mounted) {
+            Future.delayed(const Duration(seconds: 5), () {
+              context.goNamed(AppRoute.additionalInfo.name);
+            });
+          }
         }
+      } catch (error) {
+        // Handle error
       }
-      } catch (error) {}
     });
   }
 
@@ -78,7 +81,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
         Scaffold(
           body: Center(
             child: Padding(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: Text(
                 _message,
                 textAlign: TextAlign.center,

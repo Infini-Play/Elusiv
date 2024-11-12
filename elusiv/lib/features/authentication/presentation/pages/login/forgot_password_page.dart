@@ -6,13 +6,28 @@ import 'package:elusiv/core/theme/app_theme.dart';
 import 'package:elusiv/features/authentication/presentation/widgets/login_register_button.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:elusiv/features/authentication/providers/auth_provider.dart';
+import 'package:provider/provider.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
   const ForgotPasswordPage({super.key});
 
   void sendEmail(BuildContext context, TextEditingController emailController) {
-    // Only perform an action if the email and password fields have text
-    if (emailController.text.isNotEmpty) {}
+    if (emailController.text.isNotEmpty) {
+      final authProvider = Provider.of<AuthProvider>(context, listen: false);
+      authProvider.requestPasswordReset(emailController.text).then((_) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Password reset email sent!'.hardcoded)),
+        );
+      }).catchError((error) {
+        final errorString = error.toString();
+        final start = errorString.indexOf('message:');
+        final end = errorString.indexOf(",", start);
+        final message = errorString.substring(start + 9, end);
+
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+      });
+    }
   }
 
   void loginRedirect(BuildContext context) {

@@ -6,15 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pocketbase/pocketbase.dart';
 import 'package:provider/provider.dart';
+import 'package:elusiv/features/authentication/providers/auth_provider.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
 
   @override
-  _WelcomePageState createState() => _WelcomePageState();
+  WelcomePageState createState() => WelcomePageState();
 }
 
-class _WelcomePageState extends State<WelcomePage> {
+class WelcomePageState extends State<WelcomePage> {
   bool _isCheckingCredentials = true;
 
   @override
@@ -23,6 +24,7 @@ class _WelcomePageState extends State<WelcomePage> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final hasValidCredentials = await checkStoredCredentials();
       if (hasValidCredentials) {
+        if (!mounted) return;
         context.goNamed(AppRoute.homePage.name);
       } else {
         setState(() {
@@ -33,17 +35,14 @@ class _WelcomePageState extends State<WelcomePage> {
   }
 
   Future<bool> checkStoredCredentials() async {
-    final pb = Provider.of<PocketBase>(context, listen: false);
-    //testing - invalidated the stored credentials
-    pb.authStore.clear();
-    // Check if the stored credentials are valid
-    return pb.authStore.isValid;
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    return authProvider.isUserAuthenticated();
   }
 
   @override
   Widget build(BuildContext context) {
     if (_isCheckingCredentials) {
-      return Scaffold(
+      return const Scaffold(
         body: Center(
           child: CircularProgressIndicator(),
         ),
