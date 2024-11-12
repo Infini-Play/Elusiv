@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:pocketbase/pocketbase.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:elusiv/features/authentication/providers/auth_provider.dart';
+import 'package:elusiv/features/authentication/domain/auth_provider.dart';
 import 'package:elusiv/features/authentication/repositories/user_repo.dart';
 
 Future<void> main() async {

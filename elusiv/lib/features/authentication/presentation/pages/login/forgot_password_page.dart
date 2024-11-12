@@ -6,7 +6,7 @@ import 'package:elusiv/core/theme/app_theme.dart';
 import 'package:elusiv/features/authentication/presentation/widgets/login_register_button.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:elusiv/features/authentication/providers/auth_provider.dart';
+import 'package:elusiv/features/authentication/domain/auth_provider.dart';
 import 'package:provider/provider.dart';
 
 class ForgotPasswordPage extends StatelessWidget {

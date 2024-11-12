@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:elusiv/features/authentication/repositories/user_repo.dart';
-import 'package:elusiv/features/authentication/providers/models/user.dart';
+import 'package:elusiv/features/authentication/domain/models/user.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AuthProvider extends ChangeNotifier {

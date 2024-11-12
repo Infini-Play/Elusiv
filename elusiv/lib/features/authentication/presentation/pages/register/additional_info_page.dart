@@ -5,7 +5,7 @@ import 'package:elusiv/core/localization/string_extensions.dart';
 import 'package:elusiv/core/navigation/routing.dart';
 import 'package:elusiv/core/theme/app_theme.dart';
 import 'package:elusiv/features/authentication/presentation/widgets/login_register_button.dart';
-import 'package:elusiv/features/authentication/providers/auth_provider.dart';
+import 'package:elusiv/features/authentication/domain/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:pocketbase/pocketbase.dart';
 import 'package:provider/provider.dart';

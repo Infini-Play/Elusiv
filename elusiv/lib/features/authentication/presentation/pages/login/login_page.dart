@@ -7,7 +7,7 @@ import 'package:elusiv/features/authentication/presentation/widgets/login_regist
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:elusiv/features/authentication/providers/auth_provider.dart';
+import 'package:elusiv/features/authentication/domain/auth_provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
