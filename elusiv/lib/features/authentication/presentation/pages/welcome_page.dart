@@ -4,6 +4,7 @@ import 'package:elusiv/core/theme/app_theme.dart';
 import 'package:elusiv/features/authentication/presentation/widgets/login_register_button.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pocketbase/pocketbase.dart';
 import 'package:provider/provider.dart';
 import 'package:elusiv/features/authentication/domain/auth_provider.dart';
 
@@ -34,7 +35,7 @@ class WelcomePageState extends State<WelcomePage> {
   }
 
   Future<bool> checkStoredCredentials() async {
-    final authProvider = context.read<AuthProvider>();
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
     return authProvider.isUserAuthenticated();
   }
 

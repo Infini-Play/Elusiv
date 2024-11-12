@@ -1,16 +1,6 @@
 import 'package:image_picker/image_picker.dart';
 import 'package:pocketbase/pocketbase.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-final pocketBaseProvider = Provider<PocketBase>((ref) {
-  throw UnimplementedError();
-});
-
-final userRepositoryProvider = Provider<UserRepository>((ref) {
-  final pb = ref.watch(pocketBaseProvider);
-  return UserRepository.getInstance(pb);
-});
 
 class UserRepository {
   UserRepository._internal(this.pb);

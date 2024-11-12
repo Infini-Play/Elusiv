@@ -14,7 +14,7 @@ class ForgotPasswordPage extends StatelessWidget {
 
   void sendEmail(BuildContext context, TextEditingController emailController) {
     if (emailController.text.isNotEmpty) {
-      final authProvider = context.read<AuthProvider>();
+      final authProvider = Provider.of<AuthProvider>(context, listen: false);
       authProvider.requestPasswordReset(emailController.text).then((_) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Password reset email sent!'.hardcoded)),

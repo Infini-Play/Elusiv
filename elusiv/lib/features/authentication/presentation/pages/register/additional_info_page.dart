@@ -7,9 +7,11 @@ import 'package:elusiv/core/theme/app_theme.dart';
 import 'package:elusiv/features/authentication/presentation/widgets/login_register_button.dart';
 import 'package:elusiv/features/authentication/domain/auth_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:pocketbase/pocketbase.dart';
 import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:http/http.dart' as http;
 
 class AdditionalInfoPage extends StatefulWidget {
   const AdditionalInfoPage({super.key});
@@ -31,7 +33,7 @@ class AdditionalInfoPageState extends State<AdditionalInfoPage> {
       return;
     }
 
-    final authProvider = context.read<AuthProvider>();
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
     final userId = authProvider.currentUser?.id ?? '';
 
     final body = {
