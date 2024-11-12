@@ -5,6 +5,36 @@ import 'package:flutter/material.dart';
 class ProfileSettingsPage extends StatelessWidget {
   const ProfileSettingsPage({super.key});
 
+  // Draw dialogue box to confirm account deletion
+  void confirmDeleteAccount(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Delete Account'),
+          content: const Text(
+              'Are you sure you want to delete your account? This action cannot be undone.'),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: const Text('Delete'),
+              onPressed: () {
+                // TODO: Add account deletion logic 
+								// 			 Need Maksim to update backend first
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,9 +54,9 @@ class ProfileSettingsPage extends StatelessWidget {
             onTap: () {},
           ),
           ListTile(
-            title: const Text('Delete Account'),
-            onTap: () {},
-          ),
+              title: const Text('Delete Account',
+                  style: TextStyle(color: Colors.red)),
+              onTap: () => confirmDeleteAccount(context)),
         ],
       ),
     );
