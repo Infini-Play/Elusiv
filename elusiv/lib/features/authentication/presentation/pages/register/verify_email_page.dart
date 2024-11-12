@@ -25,7 +25,6 @@ class VerifyEmailPage extends StatefulWidget {
 
 class _VerifyEmailPageState extends State<VerifyEmailPage> {
   final _controller = ConfettiController(duration: const Duration(seconds: 3));
-  late final PocketBase pb;
   String _message = 'Check your Email Inbox to Verify your Account';
   Timer? _pollingTimer;
   
@@ -43,16 +42,10 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
     _startPolling();
   }
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    pb = Provider.of<PocketBase>(context);
-  }
-
   void _startPolling() {
     _pollingTimer = Timer.periodic(const Duration(seconds: 5), (timer) async {
       try {
-        final authProvider = Provider.of<AuthProvider>(context, listen: false);
+        final authProvider = context.read<AuthProvider>();
         await authProvider.authenticateUser(widget.email, widget.password);
 
         if (authProvider.currentUser?.verified == true) {

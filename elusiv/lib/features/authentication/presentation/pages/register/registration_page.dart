@@ -44,7 +44,7 @@ class RegistrationPageState extends State<RegistrationPage> {
       return;
     }
 
-    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    final authProvider = context.read<AuthProvider>();
 
     try {
       await authProvider.createUser({'email': email, 'password': password, 'passwordConfirm': password});

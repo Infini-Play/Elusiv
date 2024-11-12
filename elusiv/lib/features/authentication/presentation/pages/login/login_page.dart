@@ -29,7 +29,7 @@ class LoginPageState extends State<LoginPage> {
 
   void login(BuildContext context, TextEditingController usernameController, TextEditingController passwordController) {
     if (usernameController.text.isNotEmpty && passwordController.text.isNotEmpty) {
-      final authProvider = Provider.of<AuthProvider>(context, listen: false);
+      final authProvider = context.read<AuthProvider>();
       authProvider.authenticateUser(usernameController.text, passwordController.text).then((_) {
         if (context.mounted) {
           context.goNamed(AppRoute.homePage.name);

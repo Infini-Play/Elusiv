@@ -1,21 +1,22 @@
-import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:elusiv/features/authentication/repositories/user_repo.dart';
 import 'package:elusiv/features/authentication/domain/models/user.dart';
 import 'package:image_picker/image_picker.dart';
 
-class AuthProvider extends ChangeNotifier {
+final authProvider = StateNotifierProvider<AuthProvider, User?>((ref) {
+  final userRepo = ref.watch(userRepositoryProvider);
+  return AuthProvider(userRepo);
+});
+
+class AuthProvider extends StateNotifier<User?> {
   final UserRepository _userRepo;
-
-  AuthProvider(this._userRepo);
-
-  User? _currentUser;
-  User? get currentUser => _currentUser;
+  User? get currentUser => state;
+  AuthProvider(this._userRepo) : super(null);
 
   Future<void> createUser(Map<String, dynamic> userData) async {
     try {
       final userJson = await _userRepo.createUser(userData);
-      _currentUser = User.fromJson(userJson);
-      notifyListeners();
+      state = User.fromJson(userJson);
     } catch (e) {
       print('Error creating user: $e');
     }
@@ -24,8 +25,7 @@ class AuthProvider extends ChangeNotifier {
   Future<void> updateUser(String userId, Map<String, dynamic> userData) async {
     try {
       final userJson = await _userRepo.updateUser(userId, userData);
-      _currentUser = User.fromJson(userJson);
-      notifyListeners();
+      state = User.fromJson(userJson);
     } catch (e) {
       print('Error updating user: $e');
     }
@@ -34,8 +34,7 @@ class AuthProvider extends ChangeNotifier {
   Future<void> updateUserProfile(String userId, Map<String, dynamic> userData, XFile profileImage) async {
     try {
       final userJson = await _userRepo.updateUserProfile(userId, userData, profileImage);
-      _currentUser = User.fromJson(userJson);
-      notifyListeners();
+      state = User.fromJson(userJson);
     } catch (e) {
       print('Error updating user profile: $e');
     }
@@ -52,8 +51,7 @@ class AuthProvider extends ChangeNotifier {
   Future<void> deleteUser(String userId) async {
     try {
       await _userRepo.deleteUser(userId);
-      _currentUser = null;
-      notifyListeners();
+      state = null;
     } catch (e) {
       print('Error deleting user: $e');
     }
@@ -62,8 +60,7 @@ class AuthProvider extends ChangeNotifier {
   Future<void> authenticateUser(String email, String password) async {
     try {
       final userJson = await _userRepo.authenticateUser(email, password);
-      _currentUser = User.fromJson(userJson);
-      notifyListeners();
+      state = User.fromJson(userJson);
     } catch (e) {
       print('Error authenticating user: $e');
     }
