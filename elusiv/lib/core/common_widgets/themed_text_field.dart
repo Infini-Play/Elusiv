@@ -1,4 +1,5 @@
-import 'package:elusiv/core/common_widgets/borders/themed_border.dart';
+import 'package:elusiv/core/common_widgets/borders/themed_border_side.dart';
+import 'package:elusiv/core/common_widgets/containers/themed_container_no_borders.dart';
 import 'package:elusiv/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
@@ -12,8 +13,13 @@ class ThemedTextField extends StatelessWidget {
 
   /// Determines the border width for all edges of the container.
   /// 
-  /// This value is not used if [border] is not `null`.
+  /// This value is not used if `borderSide` is not `null`.
   final double? borderWidth;
+
+  /// Determines the borderSides for all egdes of the container.
+  final ThemedBorderSide? borderSide;
+
+
   final bool alternateColors;
   final BorderRadius? borderRadius;
   final double? borderRadiusValue;
@@ -23,6 +29,7 @@ class ThemedTextField extends StatelessWidget {
   const ThemedTextField({
     super.key,
     required this.controller,
+    this.borderSide,
     this.borderWidth,
     this.borderRadiusValue,
     this.borderRadius,
@@ -37,22 +44,14 @@ class ThemedTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final fillColor = !alternateColors ? secondary : primary;
 
-    BorderRadius finalBorderRadius;
-    if (borderRadius != null) {
-      finalBorderRadius = borderRadius!;
-    } else {
-      final borderRadiusvalues = borderRadiusValue != null 
-        ? Radius.circular(borderRadiusValue!)
-        : const Radius.circular(8);
-      finalBorderRadius = BorderRadius.only(
-        topLeft: borderRadiusvalues,
-        topRight: borderRadiusvalues,
-        bottomLeft: borderRadiusvalues,
-        bottomRight: borderRadiusvalues,
-      );
-    }
+    final fillColor = !alternateColors ? secondary : primary;
+    BorderRadius finalBorderRadius = radiusLogic(borderRadius, borderRadiusValue);
+
+
+    BorderSide finalBorderSide;
+    if (borderSide != null) {finalBorderSide = borderSide!.getBorderSide();}
+    else {finalBorderSide = ThemedBorderSide(width: borderWidth, alternateColors: !alternateColors).getBorderSide();}
 
     return SizedBox(
       width: width,
@@ -66,7 +65,7 @@ class ThemedTextField extends StatelessWidget {
           hintStyle: hintStyle,
           enabledBorder: OutlineInputBorder(
             borderRadius: finalBorderRadius,
-            borderSide: ThemedBorderSide(width: borderWidth, alternateColors: !alternateColors).getBorderSide()
+            borderSide: finalBorderSide,
           ),
           filled: true,
           fillColor: fillColor,
