@@ -17,7 +17,7 @@ class AdditionalInfoPage extends StatefulWidget {
   const AdditionalInfoPage({super.key});
 
   @override
-  AdditionalInfoPageState createState() => AdditionalInfoPageState();
+  State<AdditionalInfoPage> createState() => AdditionalInfoPageState();
 }
 
 class AdditionalInfoPageState extends State<AdditionalInfoPage> {
