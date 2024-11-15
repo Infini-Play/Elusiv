@@ -5,6 +5,7 @@ import 'package:elusiv/core/localization/string_extensions.dart';
 import 'package:elusiv/core/navigation/routing.dart';
 import 'package:elusiv/core/theme/app_theme.dart';
 import 'package:elusiv/features/authentication/presentation/widgets/login_register_button.dart';
+import 'package:elusiv/features/authentication/domain/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:pocketbase/pocketbase.dart';
 import 'package:provider/provider.dart';
@@ -16,64 +17,44 @@ class AdditionalInfoPage extends StatefulWidget {
   const AdditionalInfoPage({super.key});
 
   @override
-  
-  State<AdditionalInfoPage> createState() => _AdditionalInfoPageState();
+  State<AdditionalInfoPage> createState() => AdditionalInfoPageState();
 }
 
-class _AdditionalInfoPageState extends State<AdditionalInfoPage> {
+class AdditionalInfoPageState extends State<AdditionalInfoPage> {
   final usernameController = TextEditingController();
   final phoneNumberController = TextEditingController();
   XFile? profileImage; // Add this variable
 
   Future<void> updateProfile(BuildContext context, String username, String phoneNumber, XFile profileImage) async {
-    // Try updating the profile with pb, if successful nav to home, else show error
     if (username.isEmpty || phoneNumber.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Please fill out all fields'.hardcoded)),
       );
       return;
     }
-    final pb = Provider.of<PocketBase>(context, listen: false);
 
-    // Add the profile image to the body
-
-    //send to pb
-    //final user = await pb.collection('users').authWithPassword("asd@gmail.com", "asdasdasd");
-    final userId = pb.authStore.model.id;
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    final userId = authProvider.currentUser?.id ?? '';
 
     final body = {
       'username': username,
       'phoneNumber': phoneNumber,
     };
-    final files = [
-      http.MultipartFile.fromBytes('avatar', await profileImage.readAsBytes(), filename: '$userId-avatar.${profileImage.path.split('.').last}'),
-    ];
 
-    pb.collection('users').update(userId, body: body, files: files).then((_) {
+    try {
+      await authProvider.updateUserProfile(userId, body, profileImage);
       if (mounted) {
         context.goNamed(AppRoute.homePage.name);
       }
-    }).catchError((error) {
-      if (mounted) {
-        //username already in use
-        if (error.toString().contains('The username is invalid or already in use')) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Username already in use'.hardcoded)),
-          );
-          return;
-        }
-        if (error.toString().contains('Invalid value format')) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Invalid Phone Number'.hardcoded)),
-          );
-          return;
-        } else {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(error.toString())),
-          );
-        }
-      }
-    });
+    } catch (error) {
+      if (!mounted) return;
+      final errorString = error.toString();
+      final start = errorString.indexOf('message:');
+      final end = errorString.indexOf(",", start);
+      final message = errorString.substring(start + 9, end);
+
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+    }
   }
 
   Future<void> pickImage() async {
@@ -145,13 +126,7 @@ class _AdditionalInfoPageState extends State<AdditionalInfoPage> {
               wrap(
                   LoginRegisterButton(
                     onTap: () {
-                      if (profileImage != null) {
-                        updateProfile(context, usernameController.text, phoneNumberController.text, profileImage!);
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Please select a profile image'.hardcoded)),
-                        );
-                      }
+                        updateProfile(context, usernameController.text, phoneNumberController.text, profileImage ?? XFile(''));
                     },
                     message: 'Update Profile'.hardcoded,
                     textStyle: titleStyleMedium,
