@@ -1,5 +1,6 @@
 
 import 'package:elusiv/core/common_widgets/borders/themed_border.dart';
+import 'package:elusiv/core/common_widgets/borders/themed_border_side.dart';
 import 'package:elusiv/core/common_widgets/containers/themed_container_no_borders.dart';
 import 'package:elusiv/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -10,13 +11,18 @@ class ThemedContainer extends ThemedContainerNoBorders {
 
   /// Determines the border width for all edges of the container.
   /// 
-  /// This value is not used if [border] is not `null`.
+  /// This value is not used if [border] is set.
   final double? borderWidth;
 
-  /// Determines the [border] of the container.
+  /// Determines the border of the container. Overrides `borderWidth` if set.
   /// 
-  /// Overrides [borderWidth] if not `null`.
-  final Border? border;
+  /// Used if specific border styling is required. This includes differences such as:
+  /// 
+  /// • `ThemedBorderSide` object's `borderStyle`.
+  /// 
+  /// • Different sides of the container require different `ThemedBorderSide` objects.
+  /// 
+  final ThemedBorder? border;
 
   const ThemedContainer({
     super.key,
@@ -39,24 +45,16 @@ class ThemedContainer extends ThemedContainerNoBorders {
     final double shownElevation = elevation ?? 0.0;
     final containerColor = alternateColors ? secondary : primary;
 
-    final borderSide = ThemedBorderSide(width: borderWidth, alternateColors: alternateColors);
-    final finalBorder = ThemedBorder(borderSide: borderSide).getBorder();
-
-    BorderRadius finalBorderRadius;
-    if (borderRadius != null) {finalBorderRadius = borderRadius!;}
+    Border finalBorder;
+    if (border != null) {
+      finalBorder = border!.getBorder();
+    }
     else {
-      final borderRadiusvalues = borderRadiusValue != null 
-      ? Radius.circular(borderRadiusValue!)
-      : const Radius.circular(8);
-      finalBorderRadius = BorderRadius.only(
-        topLeft: borderRadiusvalues,
-        topRight: borderRadiusvalues,
-        bottomLeft: borderRadiusvalues,
-        bottomRight: borderRadiusvalues,
-      );
+      final borderSide = ThemedBorderSide(width: borderWidth, alternateColors: alternateColors);
+      finalBorder = ThemedBorder(borderSide: borderSide).getBorder();
     }
 
-
+    BorderRadius finalBorderRadius = radiusLogic(borderRadius, borderRadiusValue);
 
     return Material(
       elevation: shownElevation,

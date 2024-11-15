@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:elusiv/core/common_widgets/test_widgets/go_named_back_button_testing.dart';
 import 'package:elusiv/core/common_widgets/themed_text_field.dart';
 import 'package:elusiv/core/localization/string_extensions.dart';
 import 'package:elusiv/core/navigation/routing.dart';
@@ -17,7 +16,8 @@ class AdditionalInfoPage extends StatefulWidget {
   const AdditionalInfoPage({super.key});
 
   @override
-  _AdditionalInfoPageState createState() => _AdditionalInfoPageState();
+  
+  State<AdditionalInfoPage> createState() => _AdditionalInfoPageState();
 }
 
 class _AdditionalInfoPageState extends State<AdditionalInfoPage> {
