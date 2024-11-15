@@ -18,6 +18,7 @@ class AuthProvider extends ChangeNotifier {
       notifyListeners();
     } catch (e) {
       print('Error creating user: $e');
+      rethrow;
     }
   }
 
@@ -28,6 +29,7 @@ class AuthProvider extends ChangeNotifier {
       notifyListeners();
     } catch (e) {
       print('Error updating user: $e');
+      rethrow;
     }
   }
 
@@ -38,6 +40,7 @@ class AuthProvider extends ChangeNotifier {
       notifyListeners();
     } catch (e) {
       print('Error updating user profile: $e');
+      rethrow;
     }
   }
 
@@ -46,6 +49,7 @@ class AuthProvider extends ChangeNotifier {
       await updateUser(userId, {'verified': true});
     } catch (e) {
       print('Error verifying user: $e');
+      rethrow;
     }
   }
 
@@ -56,6 +60,7 @@ class AuthProvider extends ChangeNotifier {
       notifyListeners();
     } catch (e) {
       print('Error deleting user: $e');
+      rethrow;
     }
   }
 
@@ -66,14 +71,17 @@ class AuthProvider extends ChangeNotifier {
       notifyListeners();
     } catch (e) {
       print('Error authenticating user: $e');
+      rethrow;
     }
   }
 
   Future<void> requestPasswordReset(String email) async {
     try {
       await _userRepo.requestPasswordReset(email);
+
     } catch (e) {
       print('Error requesting password reset: $e');
+      rethrow;
     }
   }
 
@@ -82,6 +90,7 @@ class AuthProvider extends ChangeNotifier {
       await _userRepo.verifyEmail(token);
     } catch (e) {
       print('Error verifying email: $e');
+      rethrow;
     }
   }
 

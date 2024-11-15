@@ -54,7 +54,8 @@ class RegistrationPageState extends State<RegistrationPage> {
           extra: {'email': email, 'password': password},
         );
       }
-    } catch (error) {
+    } 
+    catch (error) {
       if (!mounted) return;
       final errorString = error.toString();
       final start = errorString.indexOf('message:');

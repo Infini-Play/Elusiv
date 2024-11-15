@@ -27,14 +27,16 @@ class LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  void login(BuildContext context, TextEditingController usernameController, TextEditingController passwordController) {
+  void login(BuildContext context, TextEditingController usernameController, TextEditingController passwordController) async {
     if (usernameController.text.isNotEmpty && passwordController.text.isNotEmpty) {
       final authProvider = Provider.of<AuthProvider>(context, listen: false);
-      authProvider.authenticateUser(usernameController.text, passwordController.text).then((_) {
+      try {
+        await authProvider.authenticateUser(usernameController.text, passwordController.text);
         if (context.mounted) {
           context.goNamed(AppRoute.homePage.name);
         }
-      }).catchError((error) {
+      } 
+      catch (error) {
         if (!mounted) return;
         final errorString = error.toString();
         final start = errorString.indexOf('message:');
@@ -42,7 +44,7 @@ class LoginPageState extends State<LoginPage> {
         final message = errorString.substring(start + 9, end);
 
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
-      });
+      }
     }
   }
 
@@ -123,7 +125,7 @@ class LoginPageState extends State<LoginPage> {
                               onTap: () => forgotPasswordRedirect(context),
                               child: Text(
                                 'Forgot Password?'.hardcoded,
-                                style: textStyle,
+                                style: clickableStyleMedium,
                               ),
                             ),
                           ],

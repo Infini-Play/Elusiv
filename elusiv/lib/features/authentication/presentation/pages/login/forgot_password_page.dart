@@ -9,24 +9,36 @@ import 'package:go_router/go_router.dart';
 import 'package:elusiv/features/authentication/domain/auth_provider.dart';
 import 'package:provider/provider.dart';
 
-class ForgotPasswordPage extends StatelessWidget {
+class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});
 
-  void sendEmail(BuildContext context, TextEditingController emailController) {
+  @override
+  ForgotPasswordPageState createState() => ForgotPasswordPageState();
+}
+
+class ForgotPasswordPageState extends State<ForgotPasswordPage> {
+  final TextEditingController emailController = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    super.dispose();
+  }
+
+  void sendEmail(BuildContext context, TextEditingController emailController) async {
     if (emailController.text.isNotEmpty) {
       final authProvider = Provider.of<AuthProvider>(context, listen: false);
-      authProvider.requestPasswordReset(emailController.text).then((_) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Password reset email sent!'.hardcoded)),
-        );
-      }).catchError((error) {
+      try {
+        await authProvider.requestPasswordReset(emailController.text);
+        context.goNamed(AppRoute.passwordReset.name);
+      } catch (error) {
         final errorString = error.toString();
         final start = errorString.indexOf('message:');
         final end = errorString.indexOf(",", start);
         final message = errorString.substring(start + 9, end);
 
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
-      });
+      }
     }
   }
 
@@ -43,7 +55,6 @@ class ForgotPasswordPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final emailController = TextEditingController();
     final width = MediaQuery.of(context).size.width * 0.75;
     const double heightPerObject = 75;
 
@@ -53,7 +64,7 @@ class ForgotPasswordPage extends StatelessWidget {
     );
 
     return Scaffold(
-      appBar: GoNamedBackButtonTesting(name: AppRoute.welcomePage.name),
+      appBar: GoNamedBackButtonTesting(name: AppRoute.loginPage.name),
       body: SingleChildScrollView(
         child: Center(
           child: SizedBox(
