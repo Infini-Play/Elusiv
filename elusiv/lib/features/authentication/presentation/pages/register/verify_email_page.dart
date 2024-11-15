@@ -78,7 +78,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
         Scaffold(
           body: Center(
             child: Padding(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: Text(
                 _message,
                 textAlign: TextAlign.center,

@@ -65,7 +65,7 @@ class ThemedContainerNoBorders extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final double shownElevation = elevation ?? 0.0;
-    final containerColor = alternateColors ? secondary : primary;
+    final color = containerColor(alternateColors: alternateColors);
 
     BorderRadius finalBorderRadius = radiusLogic(borderRadius, borderRadiusValue);
 
@@ -74,7 +74,7 @@ class ThemedContainerNoBorders extends StatelessWidget {
       borderRadius: finalBorderRadius,
       child: Container(
         decoration: BoxDecoration(
-          color: containerColor,
+          color: color,
           borderRadius: finalBorderRadius,
         ),
         width: width,

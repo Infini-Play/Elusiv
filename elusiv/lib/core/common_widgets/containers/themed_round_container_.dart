@@ -31,13 +31,13 @@ class ThemedRoundContainer extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final double shownElevation = elevation ?? 0.0;
-    final containerColor = alternateColors ? secondary : primary;
+    final color = containerColor(alternateColors: alternateColors);
 
     return Material(
       elevation: shownElevation,
       child: Container(
         decoration: BoxDecoration(
-          color: containerColor,
+          color: color,
           shape: BoxShape.circle,
         ),
         width: width,
