@@ -1,9 +1,12 @@
 
 import 'package:elusiv/features/authentication/presentation/pages/forgot_password_page.dart';
+import 'package:elusiv/features/games/presentation/pages/games_page.dart';
 import 'package:elusiv/features/home/presentation/pages/home_page.dart';
 import 'package:elusiv/features/authentication/presentation/pages/login_page.dart';
 import 'package:elusiv/features/authentication/presentation/pages/registration_page.dart';
 import 'package:elusiv/features/authentication/presentation/pages/welcome_page.dart';
+import 'package:elusiv/features/leaderboard/presentation/pages/leaderboard_page.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 enum AppRoute {
@@ -12,6 +15,8 @@ enum AppRoute {
   forgotPasswordPage,
   registrationPage,
   homePage,
+  leaderboardPage,
+  gamesPage,
 }
 
 final router = GoRouter(
@@ -20,7 +25,7 @@ final router = GoRouter(
     GoRoute(
       path: '/welcome',
       name: AppRoute.welcomePage.name,
-      builder: (context, state) => const WelcomePage(),
+      builder: (context, state) => const LeaderboardPage(),
       routes: [
         GoRoute(
           path: 'login',
@@ -39,6 +44,18 @@ final router = GoRouter(
           name: AppRoute.registrationPage.name,
           builder: (context, state) => const RegistrationPage(),
         ),
+        GoRoute(
+          path: 'leaderboard',
+          name: AppRoute.leaderboardPage.name,
+          builder: (context, state) => const LeaderboardPage(),
+          pageBuilder: (context, state) => _noTransitionPage(const LeaderboardPage()),
+        ),
+        GoRoute(
+          path: 'games',
+          name: AppRoute.gamesPage.name,
+          builder: (context, state) => const GamesPage(),
+          pageBuilder: (context, state) => _noTransitionPage(const GamesPage()),
+        ),
       ],
     ),
     GoRoute(
@@ -48,3 +65,9 @@ final router = GoRouter(
     )
   ],
 );
+
+Page _noTransitionPage(Widget child) {
+  return MaterialPage(
+    child: child,
+  );
+}
