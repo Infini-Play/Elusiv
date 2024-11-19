@@ -1,3 +1,4 @@
+import 'package:elusiv/core/common_widgets/containers/themed_container_no_borders.dart';
 import 'package:elusiv/core/navigation/routing.dart';
 import 'package:elusiv/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -13,24 +14,27 @@ class NavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final navBarState = Provider.of<NavBarState>(context);
 
-    return Container(
+    return ThemedContainerNoBorders(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      color: secondary,
+      alternateColors: true,
       child: GNav(
         selectedIndex: navBarState.selectedIndex,
         onTabChange: (index) {
           navBarState.setSelectedIndex(index);
           _navigateToPage(context, index);
         },
-        gap: 8,
+        gap: 4,
         activeColor: offWhite,
         iconSize: 24,
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        tabMargin: const EdgeInsets.symmetric(vertical: 5),
         tabBackgroundColor: primary,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         tabs: const [
           GButton(
             icon: Icons.leaderboard,
             text: 'Leaderboard',
+            textStyle: TextStyle()
           ),
           GButton(
             icon: Icons.gamepad,
