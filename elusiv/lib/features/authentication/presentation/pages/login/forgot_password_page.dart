@@ -25,19 +25,20 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
     super.dispose();
   }
 
+  
+
   void sendEmail(BuildContext context, TextEditingController emailController) async {
     if (emailController.text.isNotEmpty) {
       final authProvider = Provider.of<AuthProvider>(context, listen: false);
       try {
         await authProvider.requestPasswordReset(emailController.text);
-        context.goNamed(AppRoute.passwordReset.name);
+        if (context.mounted) {context.goNamed(AppRoute.passwordReset.name);}        
       } catch (error) {
         final errorString = error.toString();
         final start = errorString.indexOf('message:');
         final end = errorString.indexOf(",", start);
         final message = errorString.substring(start + 9, end);
-
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+        if (context.mounted) {ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));}
       }
     }
   }

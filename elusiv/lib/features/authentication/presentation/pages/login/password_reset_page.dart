@@ -25,7 +25,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
     super.initState();
     _controller.play();
     Future.delayed(const Duration(seconds: 3), () {
-      context.pushNamed(AppRoute.loginPage.name);
+      if (mounted) {context.pushNamed(AppRoute.loginPage.name);}
     });
   }
 

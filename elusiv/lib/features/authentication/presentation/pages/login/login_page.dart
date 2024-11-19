@@ -32,9 +32,7 @@ class LoginPageState extends State<LoginPage> {
       final authProvider = Provider.of<AuthProvider>(context, listen: false);
       try {
         await authProvider.authenticateUser(usernameController.text, passwordController.text);
-        if (context.mounted) {
-          context.goNamed(AppRoute.homePage.name);
-        }
+        if (context.mounted) {context.goNamed(AppRoute.homePage.name);}
       } 
       catch (error) {
         if (!mounted) return;
@@ -43,7 +41,7 @@ class LoginPageState extends State<LoginPage> {
         final end = errorString.indexOf(",", start);
         final message = errorString.substring(start + 9, end);
 
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+        if (context.mounted) {ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));}
       }
     }
   }
