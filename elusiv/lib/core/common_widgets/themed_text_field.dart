@@ -45,7 +45,7 @@ class ThemedTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final fillColor = !alternateColors ? secondary : primary;
+    final fillColor = containerColor(alternateColors: !alternateColors);
     BorderRadius finalBorderRadius = radiusLogic(borderRadius, borderRadiusValue);
 
 

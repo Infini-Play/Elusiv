@@ -90,6 +90,21 @@ final clickableStyleSmall = textStyleSmall.copyWith(
   color: clickableBlue,
 );
 
+
+Color containerColor({required bool alternateColors}) { 
+  return alternateColors ? secondary : primary;
+}
+
+Color borderColor({required bool alternateColors}) { 
+  return alternateColors ? onSecondary : onPrimary;
+}
+Color splashColor({required bool alternateColors}) { 
+  return borderColor(alternateColors: alternateColors);
+}
+List<Color> confettiColors() {
+  return [primary, secondary, tertiary];
+}
+
 ThemeData elusivTheme = ThemeData(
   brightness: Brightness.dark,
   primaryColor: primary,

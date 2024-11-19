@@ -1,3 +1,4 @@
+
 import 'dart:math';
 
 import 'package:elusiv/core/common_widgets/containers/themed_container.dart';
@@ -35,7 +36,7 @@ class CustomShapeButton extends StatelessWidget {
     final double splashBorderRadius = max(borderRadius - 2, 0);
 
 
-    final splashColor = alternateColors ? onSecondary : onPrimary;
+    final currentSplashColor = splashColor(alternateColors: alternateColors);
 
     if (borders) {
       return ThemedContainer(
@@ -48,8 +49,8 @@ class CustomShapeButton extends StatelessWidget {
           color: Colors.transparent,
           child: InkWell(
             borderRadius: BorderRadius.circular(splashBorderRadius),
-            splashColor: splashColor.withOpacity(0.5),
-            highlightColor: splashColor.withOpacity(0.3),
+            splashColor: currentSplashColor.withOpacity(0.5),
+            highlightColor: currentSplashColor.withOpacity(0.3),
             onTap: onTap,
             child: child,
           ),
@@ -66,8 +67,8 @@ class CustomShapeButton extends StatelessWidget {
           color: Colors.transparent,
           child: InkWell(
             borderRadius: BorderRadius.circular(splashBorderRadius),
-            splashColor: splashColor.withOpacity(0.5),
-            highlightColor: splashColor.withOpacity(0.3),
+            splashColor: currentSplashColor.withOpacity(0.5),
+            highlightColor: currentSplashColor.withOpacity(0.3),
             onTap: onTap,
             child: child,
           ),

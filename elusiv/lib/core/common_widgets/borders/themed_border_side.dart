@@ -14,7 +14,7 @@ class ThemedBorderSide {
     this.style,
     this.alternateColors = false,
   }): borderSide = BorderSide(
-    color: alternateColors ? onSecondary : onPrimary,
+    color: borderColor(alternateColors: alternateColors),
     width: width ?? 2,
     style: style ?? BorderStyle.solid,
   );
