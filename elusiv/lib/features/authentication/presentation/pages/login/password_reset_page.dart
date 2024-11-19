@@ -2,6 +2,8 @@ import 'dart:math';
 import 'package:confetti/confetti.dart';
 import 'package:elusiv/core/common_widgets/themed_confetti_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:elusiv/core/navigation/routing.dart';
 
 class PasswordResetPage extends StatefulWidget {
   const PasswordResetPage({super.key});
@@ -22,6 +24,9 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
   @override void initState() {
     super.initState();
     _controller.play();
+    Future.delayed(const Duration(seconds: 3), () {
+      context.pushNamed(AppRoute.loginPage.name);
+    });
   }
 
   @override
@@ -31,15 +36,20 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
       children: [
         const Scaffold(
           body: Center(
-            child: Text(
-              'Account Verified!',
+            child: 
+            Padding(
+                padding: EdgeInsets.symmetric(horizontal: 45.0),
+                child:
+            Text(
+              'If an associated account exists, reset instructions have been sent to your email.',
+              textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 28,
+                fontSize: 25,
                 fontWeight: FontWeight.bold,
               ),
-              ),
+            ),
           ),
-        ),
+        ),),
         ThemedConfettiWidget(
           controller: _controller,
           blastDirection: pi / 2,
