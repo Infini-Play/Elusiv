@@ -20,7 +20,7 @@ class ThemedConfettiWidget extends StatelessWidget {
     return ConfettiWidget(
       confettiController: controller,
       blastDirection: blastDirection,
-      colors: const [primary, secondary, tertiary],
+      colors: confettiColors(),
       numberOfParticles: numberOfParticles,
       blastDirectionality: BlastDirectionality.explosive,
     );

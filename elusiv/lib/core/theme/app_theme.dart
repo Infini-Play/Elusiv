@@ -101,6 +101,9 @@ Color borderColor({required bool alternateColors}) {
 Color splashColor({required bool alternateColors}) { 
   return borderColor(alternateColors: alternateColors);
 }
+List<Color> confettiColors() {
+  return [primary, secondary, tertiary];
+}
 
 ThemeData elusivTheme = ThemeData(
   brightness: Brightness.dark,
