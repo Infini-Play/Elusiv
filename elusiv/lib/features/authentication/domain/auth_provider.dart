@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:elusiv/features/authentication/repositories/user_repo.dart';
 import 'package:elusiv/features/authentication/domain/models/user.dart';
@@ -17,7 +19,7 @@ class AuthProvider extends ChangeNotifier {
       _currentUser = User.fromJson(userJson);
       notifyListeners();
     } catch (e) {
-      print('Error creating user: $e');
+      log('Error creating user: $e');
       rethrow;
     }
   }
@@ -28,7 +30,7 @@ class AuthProvider extends ChangeNotifier {
       _currentUser = User.fromJson(userJson);
       notifyListeners();
     } catch (e) {
-      print('Error updating user: $e');
+      log('Error updating user: $e');
       rethrow;
     }
   }
@@ -39,7 +41,7 @@ class AuthProvider extends ChangeNotifier {
       _currentUser = User.fromJson(userJson);
       notifyListeners();
     } catch (e) {
-      print('Error updating user profile: $e');
+      log('Error updating user profile: $e');
       rethrow;
     }
   }
@@ -48,7 +50,7 @@ class AuthProvider extends ChangeNotifier {
     try {
       await updateUser(userId, {'verified': true});
     } catch (e) {
-      print('Error verifying user: $e');
+      log('Error verifying user: $e');
       rethrow;
     }
   }
@@ -59,7 +61,7 @@ class AuthProvider extends ChangeNotifier {
       _currentUser = null;
       notifyListeners();
     } catch (e) {
-      print('Error deleting user: $e');
+      log('Error deleting user: $e');
       rethrow;
     }
   }
@@ -70,7 +72,7 @@ class AuthProvider extends ChangeNotifier {
       _currentUser = User.fromJson(userJson);
       notifyListeners();
     } catch (e) {
-      print('Error authenticating user: $e');
+      log('Error authenticating user: $e');
       rethrow;
     }
   }
@@ -80,7 +82,7 @@ class AuthProvider extends ChangeNotifier {
       await _userRepo.requestPasswordReset(email);
 
     } catch (e) {
-      print('Error requesting password reset: $e');
+      log('Error requesting password reset: $e');
       rethrow;
     }
   }
@@ -89,7 +91,7 @@ class AuthProvider extends ChangeNotifier {
     try {
       await _userRepo.verifyEmail(token);
     } catch (e) {
-      print('Error verifying email: $e');
+      log('Error verifying email: $e');
       rethrow;
     }
   }
@@ -99,7 +101,7 @@ class AuthProvider extends ChangeNotifier {
       final isValid = await _userRepo.isUserAuthenticated();
       return isValid;
     } catch (e) {
-      print('Error checking user authentication: $e');
+      log('Error checking user authentication: $e');
       return false;
     }
   }

@@ -7,11 +7,9 @@ import 'package:elusiv/core/theme/app_theme.dart';
 import 'package:elusiv/features/authentication/presentation/widgets/login_register_button.dart';
 import 'package:elusiv/features/authentication/domain/auth_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:pocketbase/pocketbase.dart';
 import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:http/http.dart' as http;
 
 class AdditionalInfoPage extends StatefulWidget {
   const AdditionalInfoPage({super.key});
@@ -43,9 +41,7 @@ class AdditionalInfoPageState extends State<AdditionalInfoPage> {
 
     try {
       await authProvider.updateUserProfile(userId, body, profileImage);
-      if (mounted) {
-        context.goNamed(AppRoute.homePage.name);
-      }
+      if (context.mounted) {context.goNamed(AppRoute.homePage.name);}
     } catch (error) {
       if (!mounted) return;
       final errorString = error.toString();
@@ -53,7 +49,7 @@ class AdditionalInfoPageState extends State<AdditionalInfoPage> {
       final end = errorString.indexOf(",", start);
       final message = errorString.substring(start + 9, end);
 
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+      if (context.mounted) {ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));}
     }
   }
 

@@ -6,7 +6,6 @@ import 'package:elusiv/core/theme/app_theme.dart';
 import 'package:elusiv/features/authentication/presentation/widgets/login_register_button.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pocketbase/pocketbase.dart';
 import 'package:provider/provider.dart';
 import 'package:elusiv/features/authentication/domain/auth_provider.dart';
 
@@ -62,7 +61,7 @@ class RegistrationPageState extends State<RegistrationPage> {
       final end = errorString.indexOf(",", start);
       final message = errorString.substring(start + 9, end);
 
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+      if (context.mounted) {ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));}
     }
   }
 

@@ -1,5 +1,6 @@
 import 'dart:async';
-import 'dart:math';
+import 'dart:math' as math;
+import 'dart:developer' as dev;
 import 'package:confetti/confetti.dart';
 import 'package:elusiv/core/common_widgets/themed_confetti_widget.dart';
 import 'package:elusiv/core/navigation/routing.dart';
@@ -7,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:pocketbase/pocketbase.dart';
 import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
-import 'package:elusiv/features/authentication/domain/auth_provider.dart';
 
 class VerifyEmailPage extends StatefulWidget {
   final String email;
@@ -95,7 +95,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
         ),
         ThemedConfettiWidget(
           controller: _controller,
-          blastDirection: pi / 2,
+          blastDirection: math.pi / 2,
           numberOfParticles: 40, // Add the required argument
         ),
       ],
