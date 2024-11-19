@@ -1,6 +1,26 @@
 import 'package:elusiv/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
+
+
+/// Used to caluclate the appropriate `BorderRadius` object for this container.
+/// 
+/// Uses `borderRadius` if set. If `null` then uses `borderRadiusValue` for all corners.
+/// If `borderRadiusValue` is not set, defaults to `Radius.circular(8)` for all corners.
+BorderRadius radiusLogic(BorderRadius? borderRadius, double? borderRadiusValue) {
+  BorderRadius finalBorderRadius;
+  if (borderRadius != null) {finalBorderRadius = borderRadius;}
+  else {
+    final borderRadiusvalues = borderRadiusValue != null 
+    ? Radius.circular(borderRadiusValue)
+    : const Radius.circular(8);
+    finalBorderRadius = BorderRadius.all(borderRadiusvalues);
+  }
+  return finalBorderRadius;
+}
+
+
+
 /// A container consitent with the theme of the app.
 /// 
 /// This version does not have any borders.
@@ -47,19 +67,7 @@ class ThemedContainerNoBorders extends StatelessWidget {
     final double shownElevation = elevation ?? 0.0;
     final containerColor = alternateColors ? secondary : primary;
 
-    BorderRadius finalBorderRadius;
-    if (borderRadius != null) {finalBorderRadius = borderRadius!;}
-    else {
-      final borderRadiusvalues = borderRadiusValue != null 
-      ? Radius.circular(borderRadiusValue!)
-      : const Radius.circular(8);
-      finalBorderRadius = BorderRadius.only(
-        topLeft: borderRadiusvalues,
-        topRight: borderRadiusvalues,
-        bottomLeft: borderRadiusvalues,
-        bottomRight: borderRadiusvalues,
-      );
-    }
+    BorderRadius finalBorderRadius = radiusLogic(borderRadius, borderRadiusValue);
 
     return Material(
       elevation: shownElevation,

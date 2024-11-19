@@ -14,6 +14,8 @@ const Color deepGray = Color.fromARGB(255, 62, 62, 62);
 const Color darkGray = Color.fromARGB(255, 50, 50, 50);
 const Color softBlack = Color.fromARGB(255, 27, 27, 27);
 
+const Color clickableBlue = Color.fromARGB(255, 43, 153, 255);
+
 const Color deepMagenta = Color.fromARGB(255, 104, 23, 95);
 
 
@@ -36,14 +38,56 @@ const Color textColor = offWhite;
 const Color hintColor = offWhiteSemiClear;
 const Color iconColor = offWhite;
 
+
 const textStyle = TextStyle(
   color: textColor,
+  fontSize: 16,
 );
 
-final hintStyle = textStyle.copyWith(color: hintColor);
-
 final titleStyle = textStyle.copyWith(
-  fontSize: 36
+  // Difference to make this a title
+);
+
+// different sizes of titleStyle
+final titleStyleLarge = titleStyle.copyWith(
+  fontSize: 36,
+);
+final titleStyleMedium = titleStyle.copyWith(
+  fontSize: 28,
+);
+final titleStyleSmall = titleStyle.copyWith(
+  fontSize: 22,
+);
+
+final textStyleLarge = textStyle.copyWith(
+  fontSize: 20,
+);
+final textStyleMedium = textStyle.copyWith(
+  // this is just here for formatting reasons
+  // this TextStyle is no different than textStyle
+);
+final textStyleSmall = textStyle.copyWith(
+  fontSize: 12,
+);
+
+final hintStyleLarge = textStyleLarge.copyWith(
+  color: hintColor,
+);
+final hintStyleMedium = textStyleMedium.copyWith(
+  color: hintColor,
+);
+final hintStyleSmall = textStyleSmall.copyWith(
+  color: hintColor,
+);
+
+final clickableStyleLarge = textStyleLarge.copyWith(
+  color: clickableBlue,
+);
+final clickableStyleMedium = textStyleMedium.copyWith(
+  color: clickableBlue,
+);
+final clickableStyleSmall = textStyleSmall.copyWith(
+  color: clickableBlue,
 );
 
 ThemeData elusivTheme = ThemeData(
