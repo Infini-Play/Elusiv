@@ -2,6 +2,8 @@ import 'package:elusiv/core/common_widgets/containers/themed_container_no_border
 import 'package:elusiv/core/common_widgets/test_widgets/go_named_back_button_testing.dart';
 import 'package:elusiv/core/navigation/routing.dart';
 import 'package:elusiv/core/theme/app_theme.dart';
+import 'package:elusiv/features/authentication/domain/auth_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -14,38 +16,41 @@ class ProfilePage extends StatelessWidget {
       context.goNamed(AppRoute.profileSettingsPage.name);
     }
 
+    // Get the current user from the AuthProvider
+    final authProvider = Provider.of<AuthProvider>(context);
+    final user = authProvider.currentUser;
+
     return Scaffold(
-      appBar: GoNamedBackButtonTesting(name: AppRoute.welcomePage.name),
       body: Center(
         child: Column(
           children: [
             // Top part of the screen with pic and basic info
-            const Stack(
+            Stack(
               clipBehavior: Clip.none,
               alignment: Alignment.center,
               children: [
                 // Top part primary colored background
-                ThemedContainerNoBorders(height: 225),
+                const ThemedContainerNoBorders(height: 325),
 
                 // Text containing Profile name
                 Positioned(
-                  top: 50,
+                  top: 150,
                   child: Text(
-                    'PROFILE NAME',
-                    style: TextStyle(
+                    user?.username ?? 'USERNAME',
+                    style: const TextStyle(
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
                   ),
                 ),
-
+                
                 // Text containing username
                 Positioned(
-                  top: 95,
+                  top: 195,
                   child: Text(
-                    '@username',
-                    style: TextStyle(
+                    user?.email ?? '@email',
+                    style: const TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
@@ -55,22 +60,38 @@ class ProfilePage extends StatelessWidget {
 
                 // Space for profile picture
                 Positioned(
-                  top: 150,
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: lightGray,
-                        radius: 75,
-                      ),
-                      Icon(
-                        Icons.person,
-                        size: 75,
-                        color: Colors.white,
-                      ),
-                    ],
+                  top: 250,
+                  child: CircleAvatar(
+                    radius: 75,
+                    backgroundImage: user?.avatar != null
+                        ? NetworkImage(user!.avatar!)
+                        : const AssetImage('assets/images/default_profile.png') as ImageProvider,
                   ),
                 ),
+                    // alignment: Alignment.center,
+                    // children: [
+                    //   CircleAvatar(
+                    //     backgroundColor: lightGray,
+                    //     radius: 75,
+                    //   ),
+                    //   Icon(
+                    //     Icons.person,
+                    //     size: 75,
+                    //     color: Colors.white,
+                    //   ),
+                    // ],
+              //     // Profile picture
+              //     Positioned(
+              //       top: 100,
+              //       child: CircleAvatar(
+              //         radius: 50,
+              //         backgroundImage: user?.profileImage != null
+              //             ? NetworkImage(user!.profileImage!)
+              //             : const AssetImage('assets/images/default_profile.png') as ImageProvider,
+              //       ),
+              //     ),
+              //   ],
+              // ),
               ],
             ),
 

@@ -25,7 +25,7 @@ class ProfileSettingsPage extends StatelessWidget {
               child: const Text('Delete'),
               onPressed: () {
                 // TODO: Add account deletion logic 
-								// 			 Need Maksim to update backend first
+								// Need Maksim to update backend first
                 Navigator.of(context).pop();
               },
             ),

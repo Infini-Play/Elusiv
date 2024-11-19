@@ -6,6 +6,8 @@ import 'package:elusiv/features/home/presentation/pages/home_page.dart';
 import 'package:elusiv/features/authentication/presentation/pages/login/login_page.dart';
 import 'package:elusiv/features/authentication/presentation/pages/register/registration_page.dart';
 import 'package:elusiv/features/authentication/presentation/pages/welcome_page.dart';
+import 'package:elusiv/features/profile/presentation/pages/profile_page.dart';
+import 'package:elusiv/features/profile/presentation/pages/profile_settings_page.dart';
 import 'package:go_router/go_router.dart';
 
 enum AppRoute {
@@ -17,7 +19,9 @@ enum AppRoute {
   forgotPassword,
   passwordReset,
   verifyEmail,
-  additionalInfo
+  additionalInfo, 
+  profilePage, 
+  profileSettingsPage
 }
 
 final router = GoRouter(
@@ -47,6 +51,16 @@ final router = GoRouter(
       path: '/registration',
       name: AppRoute.registrationPage.name,
       builder: (context, state) => const RegistrationPage(),
+    ),
+    GoRoute(
+      path: '/profilePage',
+      name: AppRoute.profilePage.name,
+      builder: (context, state) => const ProfilePage(),
+    ),
+    GoRoute(
+      path: '/profileSettingsPage',
+      name: AppRoute.profileSettingsPage.name,
+      builder: (context, state) => const ProfileSettingsPage(),
     ),
     GoRoute(
       path: '/verify_email',

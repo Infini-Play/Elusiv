@@ -33,7 +33,7 @@ class LoginPageState extends State<LoginPage> {
       try {
         await authProvider.authenticateUser(usernameController.text, passwordController.text);
         if (context.mounted) {
-          context.goNamed(AppRoute.homePage.name);
+          context.goNamed(AppRoute.profilePage.name);
         }
       } 
       catch (error) {
