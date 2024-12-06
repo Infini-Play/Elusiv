@@ -1,5 +1,6 @@
 
 import 'package:elusiv/features/authentication/presentation/pages/forgot_password_page.dart';
+import 'package:elusiv/features/games/presentation/pages/game_page_view.dart';
 import 'package:elusiv/features/games/presentation/pages/games_page.dart';
 import 'package:elusiv/features/home/presentation/pages/home_page.dart';
 import 'package:elusiv/features/authentication/presentation/pages/login_page.dart';
@@ -25,7 +26,7 @@ final router = GoRouter(
     GoRoute(
       path: '/welcome',
       name: AppRoute.welcomePage.name,
-      builder: (context, state) => const LeaderboardPage(),
+      builder: (context, state) => GamesPage(),
       routes: [
         GoRoute(
           path: 'login',
@@ -53,8 +54,19 @@ final router = GoRouter(
         GoRoute(
           path: 'games',
           name: AppRoute.gamesPage.name,
-          builder: (context, state) => const GamesPage(),
-          pageBuilder: (context, state) => _noTransitionPage(const GamesPage()),
+          builder: (context, state) => GamesPage(),
+          pageBuilder: (context, state) => _noTransitionPage(GamesPage()),
+        ),
+        GoRoute(
+          path: '/game/:id',
+          builder: (context, state) {
+            final id = int.tryParse(state.pathParameters['id']!) ?? 0;
+            final games = state.extra as List<Map<String, String>>;
+            return GamePageView(
+              games: games,
+              initialIndex: id,
+            );
+          },
         ),
       ],
     ),

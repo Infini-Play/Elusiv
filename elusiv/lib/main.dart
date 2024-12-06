@@ -1,3 +1,4 @@
+import 'package:elusiv/core/common_widgets/nav_bar/nav_bar_state.dart';
 import 'package:elusiv/core/navigation/routing.dart';
 import 'package:elusiv/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -46,8 +47,8 @@ Future<void> main() async {
   //pb.authStore.isValid();
 
   runApp(
-    Provider<PocketBase>.value(
-      value: pb,
+    ChangeNotifierProvider(
+      create: (context) => NavBarState(),
       child: const Elusiv(),
     ),
   );

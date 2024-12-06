@@ -34,7 +34,6 @@ class NavBar extends StatelessWidget {
           GButton(
             icon: Icons.leaderboard,
             text: 'Leaderboard',
-            textStyle: TextStyle()
           ),
           GButton(
             icon: Icons.gamepad,
