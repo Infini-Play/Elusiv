@@ -1,7 +1,9 @@
 
 import 'package:elusiv/features/authentication/presentation/pages/forgot_password_page.dart';
+import 'package:elusiv/features/games/presentation/pages/create_game_page.dart';
 import 'package:elusiv/features/games/presentation/pages/game_page_view.dart';
 import 'package:elusiv/features/games/presentation/pages/games_page.dart';
+import 'package:elusiv/features/games/presentation/pages/join_game_page.dart';
 import 'package:elusiv/features/home/presentation/pages/home_page.dart';
 import 'package:elusiv/features/authentication/presentation/pages/login_page.dart';
 import 'package:elusiv/features/authentication/presentation/pages/registration_page.dart';
@@ -18,6 +20,8 @@ enum AppRoute {
   homePage,
   leaderboardPage,
   gamesPage,
+  createGamesPage,
+  joinGamePage,
 }
 
 final router = GoRouter(
@@ -56,6 +60,18 @@ final router = GoRouter(
           name: AppRoute.gamesPage.name,
           builder: (context, state) => GamesPage(),
           pageBuilder: (context, state) => _noTransitionPage(GamesPage()),
+        ),
+        GoRoute(
+          path: 'createGame',
+          name: AppRoute.createGamesPage.name,
+          builder: (context, state) => const CreateGamePage(),
+          pageBuilder: (context, state) => _noTransitionPage(const CreateGamePage()),
+        ),
+        GoRoute(
+          path: 'joinGame',
+          name: AppRoute.joinGamePage.name,
+          builder: (context, state) => const JoinGamePage(),
+          pageBuilder: (context, state) => _noTransitionPage(const JoinGamePage()),
         ),
         GoRoute(
           path: '/game/:id',

@@ -1,5 +1,6 @@
 import 'package:elusiv/core/common_widgets/containers/themed_container.dart';
 import 'package:elusiv/core/common_widgets/nav_bar/nav_bar.dart';
+import 'package:elusiv/core/navigation/routing.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -44,6 +45,7 @@ class GamesPage extends StatelessWidget {
                     ),
                     onPressed: () {
                       // Handle Create A Game
+                      context.goNamed(AppRoute.createGamesPage.name);
                     },
                     child: const Text('Create A Game'),
                   ),
@@ -59,6 +61,7 @@ class GamesPage extends StatelessWidget {
                     ),
                     onPressed: () {
                       // Handle Join A Game
+                      context.goNamed(AppRoute.joinGamePage.name);
                     },
                     child: const Text('Join A Game'),
                   ),
