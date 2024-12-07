@@ -5,6 +5,7 @@ import 'package:elusiv/features/games/presentation/pages/game_detals_page.dart';
 import 'package:elusiv/features/games/presentation/pages/game_page_view.dart';
 import 'package:elusiv/features/games/presentation/pages/games_page.dart';
 import 'package:elusiv/features/games/presentation/pages/join_game_page.dart';
+import 'package:elusiv/features/games/presentation/pages/player_location_page.dart';
 import 'package:elusiv/features/home/presentation/pages/home_page.dart';
 import 'package:elusiv/features/authentication/presentation/pages/login_page.dart';
 import 'package:elusiv/features/authentication/presentation/pages/registration_page.dart';
@@ -32,7 +33,7 @@ final router = GoRouter(
     GoRoute(
       path: '/welcome',
       name: AppRoute.welcomePage.name,
-      builder: (context, state) => GamesPage(),
+      builder: (context, state) => const PlayerLocationPage(),
       routes: [
         GoRoute(
           path: 'login',
