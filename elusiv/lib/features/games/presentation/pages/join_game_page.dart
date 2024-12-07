@@ -49,7 +49,7 @@ class _JoinGamePageState extends State<JoinGamePage> {
                 hintText: 'Enter your name',
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
 
             // Join Game Button
             Center(

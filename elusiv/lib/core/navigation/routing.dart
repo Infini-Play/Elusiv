@@ -1,6 +1,7 @@
 
 import 'package:elusiv/features/authentication/presentation/pages/forgot_password_page.dart';
 import 'package:elusiv/features/games/presentation/pages/create_game_page.dart';
+import 'package:elusiv/features/games/presentation/pages/game_detals_page.dart';
 import 'package:elusiv/features/games/presentation/pages/game_page_view.dart';
 import 'package:elusiv/features/games/presentation/pages/games_page.dart';
 import 'package:elusiv/features/games/presentation/pages/join_game_page.dart';
@@ -22,6 +23,7 @@ enum AppRoute {
   gamesPage,
   createGamesPage,
   joinGamePage,
+  gameDetailsPage,
 }
 
 final router = GoRouter(
@@ -74,13 +76,21 @@ final router = GoRouter(
           pageBuilder: (context, state) => _noTransitionPage(const JoinGamePage()),
         ),
         GoRoute(
-          path: '/game/:id',
+          path: 'gameDetails',
+          name: AppRoute.gameDetailsPage.name,
           builder: (context, state) {
-            final id = int.tryParse(state.pathParameters['id']!) ?? 0;
-            final games = state.extra as List<Map<String, String>>;
-            return GamePageView(
-              games: games,
-              initialIndex: id,
+            final gameDetails = state.extra as Map<String, dynamic>?;
+
+            final gameName = gameDetails?['gameName'] ?? 'Unknown Game';
+            final gameType = gameDetails?['gameType'] ?? 'Unknown Type';
+            final totalParticipants = gameDetails?['participants'] ?? 0;
+            final durationInSeconds = gameDetails?['duration'] ?? 0;
+
+            return GameDetailsPage(
+              gameName: gameName,
+              gameType: gameType,
+              totalParticipants: totalParticipants,
+              durationInSeconds: durationInSeconds,
             );
           },
         ),

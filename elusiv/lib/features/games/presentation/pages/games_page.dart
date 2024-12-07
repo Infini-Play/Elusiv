@@ -101,9 +101,14 @@ class GamesPage extends StatelessWidget {
                             ),
                           ),
                           onPressed: () {
-                              context.go(
-                              '/game/$index',
-                              extra: games,
+                            context.push(
+                              'gameDetails',
+                              extra: {
+                                'gameName': 'Assassin Royale',
+                                'gameType': 'Assassin',
+                                'participants': 15,
+                                'duration': 300,
+                              },
                             );
                           },
                           child: Column(
